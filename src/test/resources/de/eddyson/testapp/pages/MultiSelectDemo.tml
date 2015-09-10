@@ -1,0 +1,10 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+      xmlns:etc="tapestry-library:extensions">
+    
+  <t:form>
+    <etc:multiselect t:mixins="formgroup" blankLabel="Select..." model="model" encoder="encoder" 
+                     selected="selected" multiple="true"/>
+    <t:submit />
+  </t:form>
+  Selected values: <span class="selected">${selected}</span>
+</html>
