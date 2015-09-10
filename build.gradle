@@ -10,7 +10,6 @@ apply plugin: 'maven'
 ext.versions =
         [slf4j: '1.7.12',
          tapestry: '5.4-beta-35',
-         tapestry_security: '0.6.2',
          selenium: '2.47.1']
 
 ext.globalTestVersions =
@@ -36,7 +35,6 @@ group = "de.eddyson.tapestry"
 version = "0.0.8-SNAPSHOT"
 
 repositories {
-  mavenLocal()
   jcenter()
 }
 
