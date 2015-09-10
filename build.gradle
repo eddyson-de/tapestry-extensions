@@ -33,7 +33,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 group = "de.eddyson.tapestry"
-version = "1.0.4-SNAPSHOT"
+version = "1.0.4"
 
 repositories {
   mavenLocal()
