@@ -14,7 +14,7 @@ Disclaimer: Some may not be ready for production. Use at your own risk.
 </html>
 ```
 
-## Components / Mixins
+## Components
 
 ### MultiSelect
 
@@ -27,6 +27,8 @@ Multiple selections based on [Select2](https://select2.github.io/).
     encoder="encoder" selected="selected" multiple="true"></etc:multiselect>
 </html>
 ```
+
+##Mixins
 
 ### PaletteFilter
 
