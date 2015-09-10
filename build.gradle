@@ -74,7 +74,7 @@ test {
 }
 
 jar {
-  manifest { attributes 'Tapestry-Module-Classes': 'de.eddyson.tapestry.extensions.modules.ComponentsModule' }
+  manifest { attributes 'Tapestry-Module-Classes': 'de.eddyson.tapestry.extensions.modules.ExtensionsModule' }
 }
 
 configure(install.repositories.mavenInstaller) {

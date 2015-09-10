@@ -11,7 +11,7 @@ import org.apache.tapestry5.services.javascript.ModuleManager;
 /**
  * @author Fabian Kretzer
  */
-public class ComponentsModule {
+public class ExtensionsModule {
 
   public static final String PATH_PREFIX = "extensions";
 
@@ -27,6 +27,6 @@ public class ComponentsModule {
     configuration.add("select2", new JavaScriptModuleConfiguration(select2));
   }
 
-  private ComponentsModule() {
+  private ExtensionsModule() {
   }
 }
