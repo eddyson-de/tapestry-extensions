@@ -1,6 +1,7 @@
 # Tapestry Extensions
 
 Collection of useful(?) components and mixins for Apache Tapestry.
+Disclaimer: Some may not be ready for production. Use at your own risk.
 
 ## General Usage
 * Add the dependency to you `build.gradle`.
