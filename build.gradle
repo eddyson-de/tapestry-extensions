@@ -33,7 +33,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 group = "de.eddyson.tapestry"
-version = "0.0.7"
+version = "0.0.8-SNAPSHOT"
 
 repositories {
   mavenLocal()
@@ -101,6 +101,9 @@ artifacts {
  // archives sourcesJar
 }
 
-
-
-
+// don't try to deploy SNAPSHOT versions in CI
+tasks.findByName("artifactoryPublish")?.with { task ->
+  if (version ==~ /.*-SNAPSHOT/){
+    task.enabled = false
+  }
+}
