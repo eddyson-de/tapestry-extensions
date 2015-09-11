@@ -34,6 +34,8 @@ Multiple selections based on [Select2](https://select2.github.io/).
 
 Filter mixin for the "Palette" core component.
 
+![out](https://cloud.githubusercontent.com/assets/5182212/9810927/3fe77ea6-5874-11e5-8199-ca5efcc1adb9.gif)
+
 ```html
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
     <t:palette t:id="palette" t:mixins="extensions/PaletteFilter" 
