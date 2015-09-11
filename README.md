@@ -4,7 +4,7 @@ Collection of useful(?) components and mixins for Apache Tapestry.
 Disclaimer: Some may not be ready for production. Use at your own risk.
 
 ## General Usage
-* Add the dependency to you `build.gradle`.
+* Add the dependency to your `build.gradle`.
 * Declare library as xml namespace and
 * use the components with your defined prefix.
 
