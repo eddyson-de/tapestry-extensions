@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.apache.tapestry5.Binding;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
@@ -208,7 +210,6 @@ public class MultiSelect  extends AbstractField {
     public Object changed(final List<Context> context
           ,@RequestParameter(value = "values", allowBlank = true)String string){
         logger.debug("Event <{}> from component <{}> with values: {}", EVENT_CHANGED, getClientId(), string);
-    JSONArray values;
 
     CaptureResultCallback<Object> callback = new CaptureResultCallback<>();
 
@@ -225,12 +226,12 @@ public class MultiSelect  extends AbstractField {
       //Multiple values submitted
     } else if(string.startsWith("[")) {
       try {
-        values = new JSONArray(string);
-        List<Object> sentValues =  values.toList().stream()
+        JSONArray values = new JSONArray(string);
+        List<Object> sentValues =  Stream.of(values)
                 .filter(s -> !s.equals("-1")).map((Object obj) -> encoder.toValue((String) obj))
                 .collect(Collectors.toList());
 
-        Object[] newContext = concatAll(sentValues.toArray(), context.toArray());
+        Object[] newContext = Stream.concat(sentValues.stream(), context.stream()).toArray();
 
         componentResources.triggerEvent(SELECTION_CHANGED, newContext, callback);
 
@@ -342,28 +343,6 @@ public class MultiSelect  extends AbstractField {
   Binding defaultValidate()
   {
     return this.defaultProvider.defaultValidatorBinding("selected", this.resources);
-  }
-
-  /**
-   * Concatenation method by Joachim Sauer http://stackoverflow.com/a/784842/4180338
-   * @param first
-   * @param rest
-   * @param <T>
-   * @return
-   */
-  @SafeVarargs
-  public static <T> T[] concatAll(T[] first, T[]... rest) {
-    int totalLength = first.length;
-    for (T[] array : rest) {
-      totalLength += array.length;
-    }
-    T[] result = Arrays.copyOf(first, totalLength);
-    int offset = first.length;
-    for (T[] array : rest) {
-      System.arraycopy(array, 0, result, offset, array.length);
-      offset += array.length;
-    }
-    return result;
   }
 
 }
