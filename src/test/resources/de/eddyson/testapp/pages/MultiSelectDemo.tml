@@ -1,12 +1,14 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
-      t:type="Layout"
-      title="MultiSelect Demo"
-      xmlns:etc="tapestry-library:EddysonTapestryExtensions">
-    
-  <t:form>
-    <etc:multiselect t:mixins="formgroup" blankLabel="Select..." model="model" encoder="encoder" 
-                     selected="selected" multiple="true"/>
-    <t:submit />
-  </t:form>
-  Selected values: <span class="selected">${selected}</span>
+	t:type="Layout" title="MultiSelect Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions">
+	<div class="row">
+		<div class="col-sm-12">
+			<t:form>
+				<etc:multiselect t:mixins="formgroup" blankLabel="Select..."
+					model="model" encoder="encoder" selected="selected" multiple="true" />
+				<t:submit />
+			</t:form>
+			Selected values:
+			<span class="selected">${selected}</span>
+		</div>
+	</div>
 </html>
