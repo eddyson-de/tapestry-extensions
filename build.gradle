@@ -30,7 +30,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 group = "de.eddyson.tapestry"
-version = "0.0.9"
+version = "0.0.10-SNAPSHOT"
 
 repositories {
   jcenter()
