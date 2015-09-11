@@ -13,7 +13,7 @@ import org.apache.tapestry5.services.javascript.ModuleManager;
  */
 public class ExtensionsModule {
 
-  public static final String PATH_PREFIX = "extensions";
+  public static final String PATH_PREFIX = "EddysonTapestryExtensions";
 
   public static void contributeComponentClassResolver(final Configuration<LibraryMapping> configuration) {
     configuration.add(new LibraryMapping(PATH_PREFIX, "de.eddyson.tapestry.extensions"));

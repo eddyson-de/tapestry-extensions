@@ -9,7 +9,7 @@ Disclaimer: Some may not be ready for production. Use at your own risk.
 * use the components with your defined prefix.
 
 ```html
-<html xmlns:etc="tapestry-library:extensions">
+<html xmlns:etc="tapestry-library:EddysonTapestryExtensions">
     <etc:multiselect></etc:multiselect>
 </html>
 ```
@@ -22,7 +22,7 @@ Multiple selections based on [Select2](https://select2.github.io/).
 
 ```html
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-      xmlns:etc="tapestry-library:extensions">
+      xmlns:etc="tapestry-library:EddysonTapestryExtensions">
     <etc:multiselect blankLabel="Select..." model="model" 
     encoder="encoder" selected="selected" multiple="true"></etc:multiselect>
 </html>
