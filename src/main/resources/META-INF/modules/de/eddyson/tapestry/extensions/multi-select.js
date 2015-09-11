@@ -1,7 +1,7 @@
 /**
  * Created by fkretzer on 24.07.15.
  */
-define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, console){
+define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, console, $){
     return function(spec, multiple, required, blanklabel){
         var $multiSelect = $("#"+spec);
         var $changeEventUri = $multiSelect.data("change-uri")
