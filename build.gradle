@@ -29,8 +29,8 @@ idea {
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
-group = "de.eddyson.tapestry"
-version = "0.0.10"
+group = "de.eddyson"
+version = "0.0.11"
 
 repositories {
   jcenter()
