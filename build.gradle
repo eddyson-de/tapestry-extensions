@@ -106,3 +106,10 @@ tasks.findByName("artifactoryPublish")?.with { task ->
     task.enabled = false
   }
 }
+
+task runTestApp(type:JavaExec) {
+  main = 'org.apache.tapestry5.test.Jetty7Runner'
+  args "-d", "src/test/webapp/", "-p", "9040"
+  systemProperties["tapestry.execution-mode"] = "test"
+  classpath = configurations.testRuntime + sourceSets.test.output + sourceSets.main.output
+}
