@@ -21,7 +21,7 @@ public class ExtensionsModule {
 
   @Contribute(ModuleManager.class)
   public static void setupJSModules(final MappedConfiguration<String, JavaScriptModuleConfiguration> configuration,
-                                    @Path("webjars:select2.js") final org.apache.tapestry5.ioc.Resource select2) {
+                                    @Path("webjars:select2:select2.js") final org.apache.tapestry5.ioc.Resource select2) {
 
     //For MultiSelect
     configuration.add("select2", new JavaScriptModuleConfiguration(select2));

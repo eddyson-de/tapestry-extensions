@@ -43,7 +43,7 @@ dependencies {
   runtime "de.eddyson:tapestry-webjars:0.7.0"
 
   //Webjars
-  runtime 'org.webjars:select2:4.0.0'
+  runtime 'org.webjars:select2:4.0.0-2'
 
   testCompile 'de.eddyson:tapestry-geb:0.18.0'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
