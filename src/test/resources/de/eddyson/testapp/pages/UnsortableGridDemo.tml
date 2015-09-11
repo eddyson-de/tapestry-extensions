@@ -1,0 +1,8 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+      xmlns:etc="tapestry-library:EddysonTapestryExtensions">
+    
+  <t:grid source="people"/>
+  
+  <t:grid source="people" t:mixins="EddysonTapestryExtensions/unsortablegrid" />
+  
+</html>
