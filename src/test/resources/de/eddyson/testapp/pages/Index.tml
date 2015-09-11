@@ -6,6 +6,8 @@
   
 	  <li><t:pagelink page="MultiSelectDemo">MultiSelect Demo</t:pagelink></li>
 	  <li><t:pagelink page="UnsortableGridDemo">UnsortableGrid Demo</t:pagelink></li>
+  	  <li><t:pagelink page="DefaultGridSortDemo">DefaultGridSort Demo</t:pagelink></li>
+	  
   </ul>
   
 </html>

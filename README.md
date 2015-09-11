@@ -43,6 +43,16 @@ Filter mixin for the "Palette" core component.
 </html>
 ```
 
+### DefaultGridSort
+
+Sort a Grid by a specific column by default
+
+```html
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+    <t:grid source="..." t:mixins="EddysonTapestryExtensions/DefaultGridSort" DefaultGridSort.sortColumn="firstName" DefaultGridSort.sortOrder="ascending"/>
+</html>
+```
+
 ### UnsortableGrid
 
 Make a grid unsortable

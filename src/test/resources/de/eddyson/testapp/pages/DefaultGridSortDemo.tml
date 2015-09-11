@@ -1,0 +1,12 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+      t:type="Layout"
+      xmlns:etc="tapestry-library:EddysonTapestryExtensions"
+      title="DefaultGridSort Demo">
+  
+  <t:grid source="people" t:mixins="EddysonTapestryExtensions/defaultgridsort"
+          DefaultGridSort.sortColumn="firstName" DefaultGridSort.sortOrder="ascending" />
+  
+  <t:grid source="people" t:mixins="EddysonTapestryExtensions/defaultgridsort"
+          DefaultGridSort.sortColumn="firstName" DefaultGridSort.sortOrder="descending" />
+  
+</html>

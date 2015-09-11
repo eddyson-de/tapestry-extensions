@@ -6,6 +6,8 @@ class MultiSelectDemo extends TapestryPage {
 
   static url = "multiselectdemo"
 
+  static at = { title == "MultiSelect Demo" }
+
   static content = {
     select { $("select") }
     searchField { $("input[type=search]") }
