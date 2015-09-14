@@ -8,7 +8,8 @@
 	  <li><t:pagelink page="UnsortableGridDemo">UnsortableGrid Demo</t:pagelink></li>
   	  <li><t:pagelink page="DefaultGridSortDemo">DefaultGridSort Demo</t:pagelink></li>
       <li><t:pagelink page="PaletteFilterDemo">PaletteFilter Demo</t:pagelink></li>
-	  
+      <li><t:pagelink page="TaggingDemo">Tagging Demo</t:pagelink></li>
+
   </ul>
   
 </html>

@@ -1,0 +1,18 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+	  t:type="Layout" title="Tagging Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions">
+<div class="row">
+	<div class="col-lg-4">
+		<t:form>
+			<etc:tagging t:id="tagging1" tags="tags" ></etc:tagging>
+			<t:submit />
+		</t:form>
+	</div>
+	<div class="col-lg-4">
+		<ul>
+			<t:loop source="tags" value="var:tag">
+				<li>${var:tag}</li>
+			</t:loop>
+		</ul>
+	</div>
+</div>
+</html>
