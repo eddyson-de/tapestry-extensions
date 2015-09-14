@@ -37,7 +37,6 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.internal.util.GenericsUtils;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ValueEncoderSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
@@ -214,7 +213,7 @@ public class MultiSelect  extends AbstractField {
    * @return
    */
   @OnEvent(value = EVENT_CHANGED)
-    public Object changed(final List<Context> context
+    public Object changed(final List<String> context
           ,@RequestParameter(value = "values", allowBlank = true)String string){
         logger.debug("Event <{}> from component <{}> with values: {}", EVENT_CHANGED, getClientId(), string);
 
