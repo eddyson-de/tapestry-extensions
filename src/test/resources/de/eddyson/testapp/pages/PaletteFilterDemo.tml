@@ -1,0 +1,11 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+	  t:type="Layout" title="PaletteFilter Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions">
+<div class="row">
+	<div class="col-sm-12">
+		<t:form>
+			<t:palette t:mixins="EddysonTapestryExtensions/palettefilter" selected="selected" model="['John', 'Jane', 'Joosie']" encoder="encoder" availableLabel="Available" selectedLabel="Selected"></t:palette>
+			<t:submit />
+		</t:form>
+	</div>
+</div>
+</html>

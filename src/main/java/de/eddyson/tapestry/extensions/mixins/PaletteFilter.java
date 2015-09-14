@@ -5,11 +5,6 @@ import org.apache.tapestry5.corelib.components.Palette;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 
-/**
- * @author Fabian Kretzer
- */
-
-
 
 public class PaletteFilter {
   @Inject
