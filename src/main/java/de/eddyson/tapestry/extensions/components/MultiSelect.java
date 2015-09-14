@@ -167,8 +167,8 @@ public class MultiSelect  extends AbstractField {
       if (submittedValues != null){
         //Multiple values submitted
 
-        selected = Arrays.stream(submittedValues).filter(s -> !s.equals("-1")).map((Function<String, Object>)
-                encoder::toValue).collect(Collectors.toList());
+        selected = Arrays.stream(submittedValues).filter(s -> !s.equals("-1")).map(encoder::toValue)
+            .collect(Collectors.toList());
       } else if(request.getParameters(controlName) != null){
         //Single value submitted
 
