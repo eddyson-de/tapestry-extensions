@@ -4,7 +4,7 @@
 		<div class="col-sm-12">
 			<t:form>
 				<etc:multiselect t:mixins="formgroup" blankLabel="Select..."
-					model="model" encoder="encoder" selected="selected" multiple="true" />
+					model="model" selected="selected" multiple="true" />
 				<t:submit />
 			</t:form>
 			Selected values:

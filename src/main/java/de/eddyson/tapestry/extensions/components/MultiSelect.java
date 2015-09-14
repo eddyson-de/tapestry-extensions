@@ -1,5 +1,7 @@
 package de.eddyson.tapestry.extensions.components;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -32,10 +34,12 @@ import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.internal.util.SelectModelRenderer;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.ioc.internal.util.GenericsUtils;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Context;
 import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ValueEncoderSource;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.slf4j.Logger;
 
@@ -83,6 +87,9 @@ public class MultiSelect  extends AbstractField {
   @Inject
   private FieldValidationSupport fieldValidationSupport;
 
+  @Inject
+  private ValueEncoderSource valueEncoderSource;
+  
   /**
    * Performs input validation on the value supplied by the user in the form submission.
    */
@@ -343,6 +350,22 @@ public class MultiSelect  extends AbstractField {
   Binding defaultValidate()
   {
     return this.defaultProvider.defaultValidatorBinding("selected", this.resources);
+  }
+  
+  ValueEncoder<?> defaultEncoder()
+  {
+    Type parameterType = resources.getBoundGenericType("selected");
+    
+    if (parameterType == null || !(parameterType instanceof ParameterizedType)) {
+      return null;
+    }
+    ParameterizedType parameterizedType = (ParameterizedType) parameterType;
+    Type[] typeArguments = parameterizedType.getActualTypeArguments();
+    if (typeArguments.length != 1){
+      return null;
+    }
+
+    return valueEncoderSource.getValueEncoder(GenericsUtils.asClass(typeArguments[0]));
   }
 
 }
