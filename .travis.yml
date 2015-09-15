@@ -3,8 +3,6 @@ jdk:
   - oraclejdk8
 
 script:
-  - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=safari
-  - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=ie
   - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=chrome
   - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=firefox
 
