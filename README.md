@@ -1,3 +1,5 @@
+![travis](https://travis-ci.org/eddyson-de/tapestry-extensions.svg?branch=master)
+
 # Tapestry Extensions
 
 Collection of useful(?) components and mixins for Apache Tapestry.
