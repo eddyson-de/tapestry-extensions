@@ -1,2 +1,2 @@
 language: java
-./gradlew test
+script: ./gradlew test
