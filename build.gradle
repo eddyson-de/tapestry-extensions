@@ -75,9 +75,22 @@ test {
   } else if(System.properties['TRAVIS'] == 'true'){
     gebenv = 'travis'
     systemProperty 'jettyPort', 9876
+    def gebSetting = System.properties['GEB_SAUCE_SETTING']
+    if ( gebSetting == "ie"){
+      gebenv = "sauce_ie"
+    } else if (gebSetting == "safari"){
+      gebenv = "sauce_safari"
+    } else if (gebSetting == "chrome"){
+      gebenv = "sauce_chrome"
+    } else if (gebSetting == "ipad"){
+      gebenv = "sauce_ipad"
+    } else if (gebSetting == "firefox"){
+      gebenv = "sauce_firefox"
+    }
   } else {
     gebenv = 'firefox'
   }
+
   systemProperty 'geb.env', gebenv
 }
 

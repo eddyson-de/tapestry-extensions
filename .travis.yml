@@ -2,7 +2,12 @@ language: java
 jdk:
   - oraclejdk8
 
-script: ./gradlew test --stacktrace --debug -DTRAVIS=true
+script: ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=safari
+script: ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=ie
+script: ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=chrome
+script: ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=firefox
+script: ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=ipad
+
 cache:
   directories:
   - $HOME/.gradle
