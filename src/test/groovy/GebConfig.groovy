@@ -21,7 +21,7 @@ environments {
   'sauce_ie' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.internetExplorer()
-    capa.setVersion("10")
+    capa.setVersion("11")
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
@@ -50,7 +50,7 @@ environments {
   'sauce_safari' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.safari()
-    capa.setVersion("8.1")
+    capa.setVersion("7")
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
