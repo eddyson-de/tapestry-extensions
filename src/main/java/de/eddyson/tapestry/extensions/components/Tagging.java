@@ -72,13 +72,18 @@ public class Tagging extends AbstractField {
     CaptureResultCallback callback = new CaptureResultCallback();
     componentResources.triggerEvent("completeTags", context, callback);
     List<Object> completionsRaw = typeCoercer.coerce(callback.getResult(), List.class);
-    List<String> completions = completionsRaw.stream()
-            .map(completion -> typeCoercer.coerce(completion, String.class)).collect(Collectors.toList());
+    List<String> completions = null;
+    if (completionsRaw != null) {
+      completions = completionsRaw.stream()
+              .map(completion -> typeCoercer.coerce(completion, String.class)).collect(Collectors.toList());
+    }
     logger.debug("Coerced tag completions for Tagging component ({}): {}", componentResources.getId(), completions);
 
     JSONArray completionsArray = new JSONArray();
-    completions.stream().forEach(completion -> completionsArray.put(new JSONObject("id", completion, "text",
-            completion)));
+    if (completions != null) {
+      completions.stream().forEach(completion -> completionsArray.put(new JSONObject("id", completion, "text",
+              completion)));
+    }
     return new JSONObject("data",completionsArray );
   }
 
