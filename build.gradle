@@ -66,9 +66,9 @@ tasks.withType(Test){
 }
 
 test {
-  systemProperties['SAUCE_USERNAME'] = System.getProperty('SAUCE_USERNAME')
-  systemProperties['SAUCE_ACCESS_KEY'] = System.getProperty('SAUCE_ACCESS_KEY')
-  systemProperties['TRAVIS_JOB_NUMBER'] = System.getProperty('TRAVIS_JOB_NUMBER')
+  systemProperties['SAUCE_USERNAME'] = System.env.SAUCE_USERNAME
+  systemProperties['SAUCE_ACCESS_KEY'] = System.env.SAUCE_ACCESS_KEY
+  systemProperties['TRAVIS_JOB_NUMBER'] = System.env.TRAVIS_JOB_NUMBER
   print System.getProperties()
   def gebenv
   if (System.properties['os.name'].toLowerCase().contains('windows')){
