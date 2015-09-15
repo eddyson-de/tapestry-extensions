@@ -63,5 +63,15 @@ Make a grid unsortable
 </html>
 ```
 
+### InfiniGrid
+
+Use AJAX to load new Grid rows dynamically while scrolling, requires `pagerPosition="none"` and `inplace="true"` parameters to be set for the Grid.
+
+
+```html
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+    <t:grid source="..." inplace="true" pagerPosition="none" t:mixins="EddysonTapestryExtensions/InfiniGrid" />
+</html>
+```
 
 

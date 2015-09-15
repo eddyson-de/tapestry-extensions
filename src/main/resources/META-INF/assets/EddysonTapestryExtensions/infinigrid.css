@@ -1,0 +1,15 @@
+.infinigridHead {
+	overflow: hidden;
+}
+
+.infinigridBody {
+	overflow-y: auto;
+}
+
+.infinigridBody>table {
+	border-top-width: 0px;
+}
+
+.infinigridBody>table>thead>tr>th  {
+	padding: 0px;
+}

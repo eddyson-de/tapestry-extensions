@@ -1,0 +1,10 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+      t:type="Layout"
+      xmlns:etc="tapestry-library:EddysonTapestryExtensions"
+      title="InfiniGrid Demo">
+  
+   
+  <t:grid source="people" t:mixins="EddysonTapestryExtensions/infinigrid"
+          inplace="true" pagerPosition="none" rowsperpage="5" />
+  
+</html>

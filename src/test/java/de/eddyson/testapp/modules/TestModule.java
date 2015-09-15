@@ -16,6 +16,8 @@ public final class TestModule {
   @ApplicationDefaults
   public static void switchToDevelopmentMode(final MappedConfiguration<String, Object> configuration) {
     configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
+    // work around ResponseWrapper bug in Prototype implementation (TAP5-2463)
+    configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER, "jquery");
   }
 
   private TestModule() {
