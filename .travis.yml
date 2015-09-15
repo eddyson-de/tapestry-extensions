@@ -6,3 +6,6 @@ before_install:
   - "export DISPLAY=:99.0"
 
 script: ./gradlew test
+cache:
+  directories:
+  - $HOME/.gradle
