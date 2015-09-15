@@ -1,7 +1,13 @@
 language: java
 jdk:
   - oraclejdk8
-before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
-
+cache:
+  directories:
+  - $HOME/.m2
 script: ./gradlew test
+
+addons:
+  sauce_connect:
+    username: "fkretzer"
+    access_key:
+      secure: "Yj8c8y9hJ8ZNhTkc+Pd9V1HMPR36rqXilz1xWL+GIbQ6GaNWDh3n+rxxy0manetLUlTwtu1QdcfqnlmaDWX1V4ZEDnLpKK/kxiSyB8mK1Xz27ve1HA+LaZmz5z3fBCNC/lKk133HIHzaGOOCd3dXg0tZOeYnMVtBycT/0CwbKZuCigW9+hZaJiyff+wQscQu1En2TqwMQHyjAi4+1VfNY1dkaqEKuAxqrf0nGy0QAQ20ABszOTeIcQhW7RYPUjV4pInHbgeh9W8kMRiUWyQSwjsXjuSgSmsrxr77PEhcqHSbZ4KC+p/gPfbfWvcMm7iDRRZKU53pQLzaysmKSyRgatF0gu2fyVitIvq7lAAh7yeXGSsJQ2gxCJfSWxO7KDUGQ/YxHPEEgEdXrV27f1C2908/0pDXJrcl54z7/mmvrLK6F9unvgJ/CUbrOXyukQv6Nm+vPwxvVbSKtIbIj5Kwg1w8j6ST9kHvyNyI+THqKCsbNXEG28ZLMi+uDuxda6pIGPKNU2VvsJ9Us74AJZ88woJqiBuKjJeJ/6yJ2U8SGb5HD3SvroXIAui881bsel/JLAArsJxlnR5IhusvuEKEowunfL6Ehgi/oh9MhUeKu5A3O8zE42012V+yWsZ2aJU9p60IJE/jD9pjERzo8ZotOrtOy0zLWxBn1L9E7X9tT7Y="
