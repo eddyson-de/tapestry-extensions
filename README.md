@@ -28,6 +28,37 @@ Multiple selections based on [Select2](https://select2.github.io/).
 </html>
 ```
 
+### Tagging
+
+Tagging component with ajax search based on [Select2](https://select2.github.io/).
+
+Template `initialTags` parameter optional)
+```html
+<t:form>
+	<etc:tagging t:id="tagging1" tags="tags" initialTags="['First','Second']" ></etc:tagging>
+	<t:submit />
+</t:form>
+```
+
+Containing Page
+```java
+public class TaggingDemo {
+  //Bound "tags" parameter will contain submitted tags.
+  @Property
+  @Persist
+  List<String> tags;
+
+  //Event gets fired while typing into the field.
+  //Evalutate query string and return suggestions.
+  @OnEvent(value = "completeTags")
+  Object completions(String query){
+    //Return Strings based on query
+    //List<String> list = dao.search(query);
+    return list;
+  }
+}
+```
+
 ##Mixins
 
 ### PaletteFilter
