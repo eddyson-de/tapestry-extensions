@@ -10,7 +10,8 @@ def tunnel_id = System.properties['TRAVIS_JOB_NUMBER']
 environments {
   'sauce_chrome' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
-    DesiredCapabilities capa = DesiredCapabilities.chrome()
+    DesiredCapabilities capa = DesiredCapabilities.chrome().setVersion("beta")
+    capa.
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
@@ -19,7 +20,7 @@ environments {
   }
   'sauce_ie' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
-    DesiredCapabilities capa = DesiredCapabilities.internetExplorer()
+    DesiredCapabilities capa = DesiredCapabilities.internetExplorer().setVersion("10")
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
@@ -28,7 +29,7 @@ environments {
   }
   'sauce_firefox' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
-    DesiredCapabilities capa = DesiredCapabilities.firefox()
+    DesiredCapabilities capa = DesiredCapabilities.firefox().setVersion("beta")
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
@@ -46,7 +47,7 @@ environments {
   }
   'sauce_safari' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
-    DesiredCapabilities capa = DesiredCapabilities.safari()
+    DesiredCapabilities capa = DesiredCapabilities.safari().setVersion("8.1")
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
