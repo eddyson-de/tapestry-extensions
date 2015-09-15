@@ -69,7 +69,7 @@ test {
   def gebenv
   if (System.properties['os.name'].toLowerCase().contains('windows')){
     gebenv = 'ie'
-  } else if(System.properties['TRAVIS']=='true'){
+  } else if(System.properties['TRAVIS'] == 'true'){
     gebenv = 'travis'
   } else {
     gebenv = 'firefox'
