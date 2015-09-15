@@ -11,7 +11,6 @@ environments {
   'sauce_chrome' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.chrome().setVersion("beta")
-    capa.
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
