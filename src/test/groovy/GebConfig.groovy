@@ -10,7 +10,8 @@ environments {
     def tunnel_id = System.properties['TRAVIS_JOB_NUMBER']
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.chrome()
-
+    capa.setCapability("tunnel-identifier", tunnel_id)
+x
     driver = {
       new RemoteWebDriver(baseUrl,capa)
     }
