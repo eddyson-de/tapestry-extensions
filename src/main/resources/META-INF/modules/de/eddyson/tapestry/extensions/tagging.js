@@ -2,10 +2,10 @@
  * Created by fkretzer on 24.07.15.
  */
 define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, console, $){
-    return function(spec,completionUrl,data,placeholder){
+    return function(spec,completionUrl,placeholder){
         var $tagging = $("#"+spec);
         var options = {};
-        options.data = data["data"];
+
         options.tags = true;
         options.multiple = true;
         options.placeholder = {
@@ -32,8 +32,7 @@ define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, co
             },
             cache: true
         };
-        options.minimumInputLength = 1,
-
+        options.minimumInputLength = 0;
         $tagging.select2(options);
         $tagging.show();
     };

@@ -66,13 +66,19 @@ public class Tagging extends AbstractField {
   }
 
   @OnEvent("internalComplete")
-  JSONObject completionValues(@RequestParameter("q")String searchString){
+  JSONObject completionValues(@RequestParameter(value = "q",allowBlank = true)String searchString){
     Object[] context = new Object[1];
     context[0] = searchString;
     CaptureResultCallback callback = new CaptureResultCallback();
-    componentResources.triggerEvent("completeTags", context, callback);
-    List<Object> completionsRaw = typeCoercer.coerce(callback.getResult(), List.class);
+    List<Object> completionsRaw = null;
     List<String> completions = null;
+    if (searchString == null || searchString.equals("")) {
+      completions = initialTags;
+    } else {
+      componentResources.triggerEvent("completeTags", context, callback);
+      completionsRaw = typeCoercer.coerce(callback.getResult(), List.class);
+    }
+
     if (completionsRaw != null) {
       completions = completionsRaw.stream()
               .map(completion -> typeCoercer.coerce(completion, String.class)).collect(Collectors.toList());
@@ -104,7 +110,7 @@ public class Tagging extends AbstractField {
 
   void afterRender(){
     javaScriptSupport.require("de/eddyson/tapestry/extensions/tagging").with(getClientId(), componentResources
-            .createEventLink("internalComplete").toURI(),initialData(),placeholder);
+            .createEventLink("internalComplete").toURI(),placeholder);
   }
 
 JSONObject initialData(){

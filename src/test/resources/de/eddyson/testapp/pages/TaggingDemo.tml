@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-lg-4">
 		<t:form>
-			<etc:tagging t:id="tagging1" tags="tags" ></etc:tagging>
+			<etc:tagging t:id="tagging1" tags="tags" initialTags="['First','Second']" ></etc:tagging>
 			<t:submit />
 		</t:form>
 	</div>
