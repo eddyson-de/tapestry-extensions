@@ -12,8 +12,9 @@ class TaggingSpec extends JettyGebSpec{
     to TaggingDemo
 
     when:
-    search << "Foo"
+    search << "foo"
     waitFor { $(".select2-results__option", text:"Foo").displayed }
+    search << Keys.ARROW_DOWN
     search << Keys.ENTER
     submit.click()
 

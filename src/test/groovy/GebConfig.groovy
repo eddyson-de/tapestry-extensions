@@ -59,13 +59,11 @@ environments {
       new RemoteWebDriver(baseUrl,capa)
     }
   }
-
-  environments.each{
-    env ->
-      env.waiting {
-          timeout = 30
-          retryInterval = 1.0
-      }
-  }
-
+}
+environments.each{
+  env ->
+    env.waiting {
+      timeout = 30
+      retryInterval = 1.0
+    }
 }
