@@ -14,8 +14,7 @@ class TaggingSpec extends JettyGebSpec{
     when:
     search << "fo"
     waitFor { $(".select2-results__option", text:"Foo").displayed }
-    search << Keys.ARROW_DOWN
-    search << Keys.ENTER
+    $(".select2-results__option", text:"Foo").click()
     submit.click()
 
     then:
