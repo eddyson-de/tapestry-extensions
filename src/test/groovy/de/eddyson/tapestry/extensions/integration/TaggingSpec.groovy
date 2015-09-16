@@ -12,16 +12,14 @@ class TaggingSpec extends JettyGebSpec{
     to TaggingDemo
 
     when:
-    search << "f"
-    waitFor {$(".select2-results__option", text:"Foo").displayed}
-    search << Keys.ARROW_DOWN
-    search << Keys.ARROW_DOWN
+    search << "Foo"
+    waitFor { $(".select2-results__option", text:"Foo").displayed }
     search << Keys.ENTER
     submit.click()
 
     then:
     taglist.children().size() == 1
-    taglist.children()[0].text()== "Funny"
+    taglist.children()[0].text()== "Foo"
 
     when:
     search << "New Tag"
@@ -31,7 +29,7 @@ class TaggingSpec extends JettyGebSpec{
 
     then:
     taglist.children().size() == 2
-    taglist.children()[0].text()== "Funny"
+    taglist.children()[0].text()== "Foo"
     taglist.children()[1].text()== "New Tag"
 
 
