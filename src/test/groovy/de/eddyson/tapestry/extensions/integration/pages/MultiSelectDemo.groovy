@@ -10,7 +10,7 @@ class MultiSelectDemo extends TapestryPage {
 
   static content = {
     select { $("select") }
-    searchField { $("input[type=search]") }
+    searchField { $(".select2-search__field") }
     submit { $("input[type=submit]") }
     selectedValues { $("span.selected") }
   }

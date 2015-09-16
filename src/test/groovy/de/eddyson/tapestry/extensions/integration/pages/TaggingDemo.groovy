@@ -6,7 +6,7 @@ class TaggingDemo extends TapestryPage{
   static at = {title == "Tagging Demo"}
   static url = "taggingdemo"
   static content = {
-    search {$("input[type='search']")}
+    search {$(".select2-search__field")}
     taglist {$("#taglist")}
     submit {$("input[type='submit']")}
   }
