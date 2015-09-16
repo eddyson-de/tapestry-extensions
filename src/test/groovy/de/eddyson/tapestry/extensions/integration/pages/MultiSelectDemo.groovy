@@ -1,6 +1,7 @@
 package de.eddyson.tapestry.extensions.integration.pages
 
 import de.eddyson.tapestrygeb.TapestryPage
+import geb.Page
 
 class MultiSelectDemo extends TapestryPage {
 
