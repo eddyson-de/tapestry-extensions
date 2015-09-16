@@ -51,12 +51,21 @@ environments {
   'sauce_safari' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.safari()
-    capa.setVersion("7")
+    capa.setCapability("platform", "OS X 10.10");
+    capa.setCapability("version", "8.0");
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
       new RemoteWebDriver(baseUrl,capa)
     }
+  }
+
+  environments.each{
+    env ->
+      env.waiting {
+          timeout = 30
+          retryInterval = 1.0
+      }
   }
 
 }
