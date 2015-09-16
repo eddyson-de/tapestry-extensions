@@ -21,7 +21,8 @@ environments {
   'sauce_ie' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.internetExplorer()
-    capa.setVersion("11")
+    capa.setCapability("platform", "Windows 7");
+    capa.setCapability("version", "11.0");
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
