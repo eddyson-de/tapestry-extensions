@@ -1,4 +1,4 @@
-![travis](https://travis-ci.org/eddyson-de/tapestry-extensions.svg?branch=master)
+![travis](https://travis-ci.org/eddyson-de/tapestry-extensions.svg?branch=master) (Chrome & Firefox beta)
 
 # Tapestry Extensions
 
