@@ -10,6 +10,7 @@
       <li><t:pagelink page="PaletteFilterDemo">PaletteFilter Demo</t:pagelink></li>
       <li><t:pagelink page="TaggingDemo">Tagging Demo</t:pagelink></li>
       <li><t:pagelink page="InfiniGridDemo">InfiniGrid Demo</t:pagelink></li>
+      <li><t:pagelink page="FadeOnRefreshDemo">FadeOnRefresh Demo</t:pagelink></li>
 
   </ul>
   

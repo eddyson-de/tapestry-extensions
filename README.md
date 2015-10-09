@@ -107,4 +107,15 @@ Use AJAX to load new Grid rows dynamically while scrolling, requires `pagerPosit
 </html>
 ```
 
+### FadeOnRefresh
 
+Fade out a zone when it is updating and fade it back in afterwards.
+
+
+```html
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+    <t:zone t:id="zone" t:mixins="ZoneRefresh,EddysonTapestryExtensions/FadeOnRefresh" ZoneRefresh.period="2" >
+				I am a zone
+    </t:zone>
+</html>
+```

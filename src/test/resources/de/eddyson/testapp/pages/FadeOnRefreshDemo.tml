@@ -1,0 +1,10 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
+	t:type="Layout" title="FadeOnRefresh Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions">
+	<div class="row">
+		<div class="col-sm-12">
+			<t:zone t:id="zone" t:mixins="ZoneRefresh,EddysonTapestryExtensions/FadeOnRefresh" ZoneRefresh.period="2" >
+				I am a zone
+			</t:zone>
+		</div>
+	</div>
+</html>
