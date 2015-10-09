@@ -8,7 +8,7 @@ apply plugin: 'maven'
 ext.versions =
         [slf4j: '1.7.12',
          tapestry: '5.4-beta-35',
-         selenium: '2.47.2']
+         selenium: '2.48.1']
 
 ext.globalTestVersions =
         [spock: '1.0-groovy-2.4']
@@ -46,7 +46,7 @@ dependencies {
   //Webjars
   runtime 'org.webjars:select2:4.0.0-2'
 
-  testCompile 'de.eddyson:tapestry-geb:0.19.0'
+  testCompile 'de.eddyson:tapestry-geb:0.20.0'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
   
   // Logback
