@@ -2,6 +2,8 @@
 
 # Tapestry Extensions
 
+[![Join the chat at https://gitter.im/eddyson-de/tapestry-extensions](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/eddyson-de/tapestry-extensions?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Collection of useful(?) components and mixins for Apache Tapestry.
 Disclaimer: Some may not be ready for production. Use at your own risk.
 
