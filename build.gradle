@@ -13,8 +13,8 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 ext.versions =
-        [slf4j: '1.7.12',
-         tapestry: '5.4-beta-35',
+        [slf4j: '1.7.13',
+         tapestry: '5.4-rc-1',
          selenium: '2.48.2']
 
 ext.globalTestVersions =
@@ -48,7 +48,7 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtime "de.eddyson:tapestry-webjars:0.7.0"
+  runtime "de.eddyson:tapestry-webjars:0.9.2"
 
   //Webjars
   runtime ('org.webjars:select2:4.0.0-2'){
