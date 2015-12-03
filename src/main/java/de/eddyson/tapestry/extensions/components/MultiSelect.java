@@ -49,7 +49,7 @@ import org.slf4j.Logger;
  *
  * @author Fabian Kretzer
  */
-@Import(stylesheet = "webjars:select2:select2.css")
+@Import(stylesheet = "webjars:select2:$version/dist/css/select2.css")
 public class MultiSelect  extends AbstractField {
 
   public static final String EVENT_CHANGED = "changed";

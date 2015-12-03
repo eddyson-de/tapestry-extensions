@@ -20,7 +20,7 @@ import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.slf4j.Logger;
 
-@Import(stylesheet = "webjars:select2:select2.css")
+@Import(stylesheet = "webjars:select2:$version/dist/css/select2.css")
 public class Tagging extends AbstractField {
 
   @Parameter

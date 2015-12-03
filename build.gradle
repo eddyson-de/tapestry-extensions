@@ -51,8 +51,8 @@ dependencies {
   runtime "de.eddyson:tapestry-webjars:0.9.3"
 
   //Webjars
-  runtime ('org.webjars:select2:4.0.0-2'){
-    exclude group: 'org.webjars', module: 'jquery'
+  runtime ('org.webjars.npm:select2:4.0.1'){
+    transitive = false
   }
 
   testCompile 'de.eddyson:tapestry-geb:0.21.0'
