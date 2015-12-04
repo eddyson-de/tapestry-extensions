@@ -170,7 +170,7 @@ task sourcesJar(type: Jar, dependsOn:classes) {
 
 artifacts {
   archives jar
- // archives sourcesJar
+  archives sourcesJar
 }
 
 // don't try to deploy SNAPSHOT versions in CI
