@@ -112,20 +112,4 @@ public class Tagging extends AbstractField {
     javaScriptSupport.require("de/eddyson/tapestry/extensions/tagging").with(getClientId(), componentResources
             .createEventLink("internalComplete").toURI(),placeholder);
   }
-
-JSONObject initialData(){
-  if(tags == null){
-    tags = new ArrayList<>();
-  }
-  if(initialTags == null){
-    initialTags = tags;
-  }
-  ArrayList<String> initialNew = new ArrayList<>(initialTags);
-  initialNew.removeAll(tags);
-  initialNew.addAll(tags);
-  JSONArray data = new JSONArray();
-  initialNew.stream().forEach(tag -> data.put(new JSONObject("id",tag, "text",tag)));
-  return new JSONObject("data",data);
-}
-
 }
