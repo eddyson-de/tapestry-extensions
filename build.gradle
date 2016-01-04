@@ -14,7 +14,7 @@ apply plugin: 'maven'
 
 ext.versions =
         [slf4j: '1.7.13',
-         tapestry: '5.4-rc-1',
+         tapestry: '5.4.0',
          selenium: '2.48.2']
 
 ext.globalTestVersions =
