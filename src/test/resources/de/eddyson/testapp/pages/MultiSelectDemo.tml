@@ -9,6 +9,9 @@
 			</t:form>
 			Selected values:
 			<span class="selected">${selected}</span>
+			<t:zone t:id="eventZone">
+				<p class="liveUpdate">${selected}</p>
+			</t:zone>
 		</div>
 	</div>
 </html>

@@ -214,7 +214,8 @@ public class MultiSelect  extends AbstractField {
   @OnEvent(value = EVENT_CHANGED)
     public Object changed(final List<String> context
           ,@RequestParameter(value = "values", allowBlank = true)String string){
-        logger.debug("Event <{}> from component <{}> with values: {}", EVENT_CHANGED, getClientId(), string);
+        logger.debug("Event <{}> from component <{}> with values: {}", EVENT_CHANGED
+                ,componentResources.getCompleteId(), string);
 
     CaptureResultCallback<Object> callback = new CaptureResultCallback<>();
 
@@ -226,6 +227,7 @@ public class MultiSelect  extends AbstractField {
       List<Object> currentSelectedValue = new ArrayList<>();
       currentSelectedValue.add(singleContextValue[0]);
       this.selected = currentSelectedValue;
+      logger.debug("Single value submitted from component <{}> : {}",componentResources.getCompleteId(), singleContextValue[0]);
       componentResources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
 
       //Multiple values submitted
@@ -237,16 +239,19 @@ public class MultiSelect  extends AbstractField {
                 .collect(Collectors.toList());
 
         Object[] newContext = Stream.concat(sentValues.stream(), context.stream()).toArray();
+        logger.debug("Multiple values submitted from component <{}> : {}",componentResources.getCompleteId(),newContext);
 
         componentResources.triggerEvent(SELECTION_CHANGED, newContext, callback);
 
         this.selected = sentValues;
       } catch (RuntimeException e){
+        logger.debug("Could not decode multiple values from <{}> event. From component: {}. Submitted values: {}. Exception: {}", EVENT_CHANGED, componentResources.getCompleteId(), string, e.getMessage());
         componentResources.triggerEvent(SELECTION_CHANGED, null, callback);
         this.selected = null;
       }
     } else {
       componentResources.triggerEvent(SELECTION_CHANGED, null, callback);
+      logger.debug("Could not decode value from <{}> event. From component: {}. Submitted values: {}", EVENT_CHANGED, componentResources.getCompleteId(), string);
       this.selected = null;
     }
     return callback.getResult();
