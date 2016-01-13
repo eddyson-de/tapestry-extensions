@@ -234,7 +234,7 @@ public class MultiSelect  extends AbstractField {
     } else if(string.startsWith("[")) {
       try {
         JSONArray values = new JSONArray(string);
-        List<Object> sentValues =  Stream.of(values)
+        List<Object> sentValues =  values.toList().stream()
                 .filter(s -> !s.equals("-1")).map((Object obj) -> encoder.toValue((String) obj))
                 .collect(Collectors.toList());
 
