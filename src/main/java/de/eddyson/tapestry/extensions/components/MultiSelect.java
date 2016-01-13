@@ -239,7 +239,7 @@ public class MultiSelect  extends AbstractField {
                 .collect(Collectors.toList());
 
         Object[] newContext = Stream.concat(sentValues.stream(), context.stream()).toArray();
-        logger.debug("Multiple values submitted from component <{}> : {}",componentResources.getCompleteId(),newContext);
+        logger.debug("Values submitted from component <{}> -> Encoded:  {}",componentResources.getCompleteId(),newContext);
 
         componentResources.triggerEvent(SELECTION_CHANGED, newContext, callback);
 

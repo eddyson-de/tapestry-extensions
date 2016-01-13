@@ -7,9 +7,10 @@
 					model="model" selected="selected" multiple="true" />
 				<t:submit />
 			</t:form>
-			Selected values:
+			Submitted values:
 			<span class="selected">${selected}</span>
 			<t:zone t:id="eventZone">
+				Selected values live update:
 				<p class="liveUpdate">${selected}</p>
 			</t:zone>
 		</div>
