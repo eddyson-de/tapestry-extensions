@@ -245,7 +245,7 @@ public class MultiSelect  extends AbstractField {
 
         this.selected = sentValues;
       } catch (RuntimeException e){
-        logger.debug("Could not decode multiple values from <{}> event. From component: {}. Submitted values: {}. Exception: {}", EVENT_CHANGED, componentResources.getCompleteId(), string, e.getMessage());
+        logger.error("Could not decode multiple values from <{}> event. From component: {}. Submitted values: {}. Exception: {}", EVENT_CHANGED, componentResources.getCompleteId(), string, e.getMessage());
         componentResources.triggerEvent(SELECTION_CHANGED, null, callback);
         this.selected = null;
       }
