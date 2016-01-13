@@ -14,5 +14,6 @@ class MultiSelectDemo extends TapestryPage {
     searchField { $(".select2-search__field") }
     submit { $("input[type=submit]") }
     selectedValues { $("span.selected") }
+    liveUpdate { $("p.liveUpdate") }
   }
 }

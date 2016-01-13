@@ -12,9 +12,23 @@ class MultiSelectSpec extends JettyGebSpec {
     when:
     searchField << 'Hel'
     searchField << Keys.ENTER
+
+    then:
+    waitFor {
+      liveUpdate.text().contains("[Hello]")
+    }
+    when:
     searchField << 'Wor'
     searchField << Keys.ENTER
+
+    then:
+    waitFor {
+      liveUpdate.text().contains("[Hello, World]")
+    }
+
+    when:
     submit.click()
+
     then:
     selectedValues.text().contains ('Hello, World')
   }
