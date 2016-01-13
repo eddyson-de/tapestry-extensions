@@ -22,7 +22,7 @@ define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, co
 
         $multiSelect.on("change", function(e){
             var jsonString = JSON.stringify($multiSelect.val());
-            console.info(spec+" changed. Submitting new values: "+jsonString);
+            console.debug(spec+" changed. Submitting new values: "+jsonString);
             ajax($changeEventUri, {
                 data: {values: jsonString}});
         });
