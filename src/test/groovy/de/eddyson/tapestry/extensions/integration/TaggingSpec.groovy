@@ -1,8 +1,9 @@
 package de.eddyson.tapestry.extensions.integration
 
+import org.openqa.selenium.Keys
+
 import de.eddyson.tapestry.extensions.integration.pages.TaggingDemo
 import de.eddyson.tapestrygeb.JettyGebSpec
-import org.openqa.selenium.Keys
 
 
 class TaggingSpec extends JettyGebSpec{
@@ -29,9 +30,7 @@ class TaggingSpec extends JettyGebSpec{
 
     then:
     taglist.children().size() == 2
-    taglist.children().text()== "Foo"
+    taglist.children().first().text()== "Foo"
     taglist.children()[1].text()== "New Tag"
-
-
   }
 }

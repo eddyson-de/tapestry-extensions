@@ -10,9 +10,9 @@ class DefaultGridSortSpec extends JettyGebSpec {
     to DefaultGridSortDemo
     expect:
 
-    upperTable.find('th').getAttribute('data-grid-column-sort') == "ascending"
-    upperTable.find('td').text() == "Jane"
-    lowerTable.find('th').getAttribute('data-grid-column-sort') == "descending"
-    lowerTable.find('td').text() == "John"
+    upperTable.find('th').first().getAttribute('data-grid-column-sort') == "ascending"
+    upperTable.find('td').first().text() == "Jane"
+    lowerTable.find('th').first().getAttribute('data-grid-column-sort') == "descending"
+    lowerTable.find('td').first().text() == "John"
   }
 }

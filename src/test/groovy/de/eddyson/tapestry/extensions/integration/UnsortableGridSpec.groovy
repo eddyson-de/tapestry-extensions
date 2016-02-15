@@ -9,7 +9,7 @@ class UnsortableGridSpec extends JettyGebSpec {
     given:
     to UnsortableGridDemo
     expect:
-    table.find('th').getAttribute('data-grid-column-sort') == "sortable"
-    unsortableTable.find('th').getAttribute('data-grid-column-sort') == ""
+    table.find('th').first().getAttribute('data-grid-column-sort') == "sortable"
+    unsortableTable.find('th').first().getAttribute('data-grid-column-sort') == ""
   }
 }
