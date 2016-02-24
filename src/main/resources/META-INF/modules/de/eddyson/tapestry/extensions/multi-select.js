@@ -15,6 +15,7 @@ define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, co
                 id: "-1",
                 text: blanklabel
             };
+            options.allowClear = true;
         }
 
         $multiSelect.select2(options);

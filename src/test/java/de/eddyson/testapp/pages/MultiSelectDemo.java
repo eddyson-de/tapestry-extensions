@@ -22,6 +22,10 @@ public class MultiSelectDemo {
   @Persist
   private List<String> selected;
 
+  @Property
+  @Persist
+  private List<String> selectedSingle;
+
   @Inject
   AjaxResponseRenderer ajaxResponseRenderer;
 
@@ -39,12 +43,16 @@ public class MultiSelectDemo {
     return new StringValueEncoder();
   }
 
-  @OnEvent(value = MultiSelect.SELECTION_CHANGED)
+  @OnEvent(value = MultiSelect.SELECTION_CHANGED, component = "multi")
   void updateView(List<String> list){
     logger.debug("Event triggered: {} -> Values: {}", MultiSelect.SELECTION_CHANGED, list);
     selected = list;
     ajaxResponseRenderer.addRender(eventZone);
 
+  }
+
+  public Object getModelSingle() {
+    return CollectionFactory.newList("Bar", "Foo", "Hello", "World");
   }
 
 }

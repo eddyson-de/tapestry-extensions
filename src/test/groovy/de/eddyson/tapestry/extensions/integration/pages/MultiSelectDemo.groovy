@@ -10,10 +10,12 @@ class MultiSelectDemo extends TapestryPage {
   static at = { title == "MultiSelect Demo" }
 
   static content = {
-    select { $("select") }
+    select { $("#multi") }
     searchField { $(".select2-search__field") }
     submit { $("input[type=submit]") }
     selectedValues { $("span.selected") }
     liveUpdate { $("p.liveUpdate") }
+
+    selectSingle { $("#single")}
   }
 }

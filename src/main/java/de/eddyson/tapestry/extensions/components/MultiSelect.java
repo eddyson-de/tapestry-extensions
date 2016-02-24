@@ -54,6 +54,7 @@ public class MultiSelect  extends AbstractField {
 
   public static final String EVENT_CHANGED = "changed";
   public static final String SELECTION_CHANGED = "selection_changed";
+  public static final String BLANK_OPTION_VALUE = "-1";
   @Inject
   ComponentResources componentResources;
 
@@ -166,13 +167,13 @@ public class MultiSelect  extends AbstractField {
       if (submittedValues != null){
         //Multiple values submitted
 
-        selected = Arrays.stream(submittedValues).filter(s -> !s.equals("-1")).map(encoder::toValue)
+        selected = Arrays.stream(submittedValues).filter(s -> !s.equals(BLANK_OPTION_VALUE)).map(encoder::toValue)
             .collect(Collectors.toList());
       } else if(request.getParameters(controlName) != null){
         //Single value submitted
 
         String singleValue = request.getParameter(controlName);
-        if (singleValue != "-1") {
+        if (singleValue != BLANK_OPTION_VALUE) {
           String quotesRemoved = singleValue.substring(1, singleValue.length()-1);
           selected.add(encoder.toValue(quotesRemoved));
         }
@@ -225,7 +226,9 @@ public class MultiSelect  extends AbstractField {
       String quotesRemoved = string.substring(1, string.length()-1);
       singleContextValue[0] = encoder.toValue(quotesRemoved);
       List<Object> currentSelectedValue = new ArrayList<>();
-      currentSelectedValue.add(singleContextValue[0]);
+      if(singleContextValue[0] != BLANK_OPTION_VALUE){
+        currentSelectedValue.add(singleContextValue[0]);
+      }
       this.selected = currentSelectedValue;
       logger.debug("Single value submitted from component <{}> : {}",componentResources.getCompleteId(), singleContextValue[0]);
       componentResources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
@@ -235,7 +238,7 @@ public class MultiSelect  extends AbstractField {
       try {
         JSONArray values = new JSONArray(string);
         List<Object> sentValues =  values.toList().stream()
-                .filter(s -> !s.equals("-1")).map((Object obj) -> encoder.toValue((String) obj))
+                .filter(s -> !s.equals(BLANK_OPTION_VALUE)).map((Object obj) -> encoder.toValue((String) obj))
                 .collect(Collectors.toList());
 
         Object[] newContext = Stream.concat(sentValues.stream(), context.stream()).toArray();
@@ -305,7 +308,7 @@ public class MultiSelect  extends AbstractField {
     */
     if (showBlankOption())
     {
-      writer.element("option", "value", "-1");
+      writer.element("option", "value", BLANK_OPTION_VALUE);
       writer.write(blankLabel);
       writer.end();
     }
