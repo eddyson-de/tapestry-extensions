@@ -37,7 +37,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 group = "de.eddyson"
-version = "0.0.17-SNAPSHOT"
+version = "0.0.18"
 
 repositories {
   jcenter()
