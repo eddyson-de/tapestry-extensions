@@ -11,11 +11,15 @@ class MultiSelectDemo extends TapestryPage {
 
   static content = {
     select { $("#multi") }
-    searchField { $(".select2-search__field") }
-    submit { $("input[type=submit]") }
+    searchField { $("#multiForm").find(".select2-search__field") }
+    submit { $("#multiForm").find("input[type=submit]") }
     selectedValues { $("span.selected") }
     liveUpdate { $("p.liveUpdate") }
 
     selectSingle { $("#single")}
+    searchFieldSingle { $(".select2-search--dropdown").find(".select2-search__field") }
+    selectedValueSingle { $("span.selectedSingle") }
+    submitSingle { $("#formSingle").find("input[type=submit]") }
+    liveUpdateSingle { $("p.liveUpdateSingle")}
   }
 }

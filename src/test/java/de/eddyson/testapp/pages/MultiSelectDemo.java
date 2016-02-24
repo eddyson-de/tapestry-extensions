@@ -32,6 +32,9 @@ public class MultiSelectDemo {
   @InjectComponent
   Zone eventZone;
 
+  @InjectComponent
+  Zone eventZoneSingle;
+
   @Inject
   Logger logger;
 
@@ -48,6 +51,14 @@ public class MultiSelectDemo {
     logger.debug("Event triggered: {} -> Values: {}", MultiSelect.SELECTION_CHANGED, list);
     selected = list;
     ajaxResponseRenderer.addRender(eventZone);
+
+  }
+
+  @OnEvent(value = MultiSelect.SELECTION_CHANGED, component = "single")
+  void updateSingleView(List<String> list){
+    logger.debug("Event triggered: {} -> Values: {}", MultiSelect.SELECTION_CHANGED, list);
+    selectedSingle = list;
+    ajaxResponseRenderer.addRender(eventZoneSingle);
 
   }
 

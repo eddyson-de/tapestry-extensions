@@ -156,11 +156,6 @@ public class MultiSelect  extends AbstractField {
   @Override
   protected void processSubmission(final String controlName) {
       String[] submittedValues = request.getParameters(controlName + "[]");
-      Collection<Object> selected = this.selected;
-    if (selected != null){
-      selected.clear();
-    }
-
 
       logger.debug("Submitted value from MultiSelect with id -> {} are: {}"
               , componentResources.getCompleteId(), submittedValues);
@@ -184,7 +179,6 @@ public class MultiSelect  extends AbstractField {
     {
       fieldValidationSupport.validate(selected, resources, validate);
 
-      this.selected = selected;
     } catch (final ValidationException e)
     {
       validationTracker.recordError(this, e.getMessage());
@@ -226,12 +220,16 @@ public class MultiSelect  extends AbstractField {
       String quotesRemoved = string.substring(1, string.length()-1);
       singleContextValue[0] = encoder.toValue(quotesRemoved);
       List<Object> currentSelectedValue = new ArrayList<>();
-      if(singleContextValue[0] != BLANK_OPTION_VALUE){
+      logger.debug("Single value submitted from component <{}> : {}",componentResources.getCompleteId(), singleContextValue[0]);
+
+      if(!singleContextValue[0].equals(BLANK_OPTION_VALUE)){
         currentSelectedValue.add(singleContextValue[0]);
+        componentResources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
+      } else {
+        logger.debug("Single value submitted from component <{}> : {} is blank option. Clearing context.",componentResources.getCompleteId(), singleContextValue[0]);
+        componentResources.triggerEvent(SELECTION_CHANGED, null ,callback);
       }
       this.selected = currentSelectedValue;
-      logger.debug("Single value submitted from component <{}> : {}",componentResources.getCompleteId(), singleContextValue[0]);
-      componentResources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
 
       //Multiple values submitted
     } else if(string.startsWith("[")) {

@@ -2,7 +2,7 @@
 	t:type="Layout" title="MultiSelect Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions">
 	<div class="row">
 		<div class="col-sm-12">
-			<t:form>
+			<t:form t:id="multiForm">
 				<etc:multiselect t:id="multi" t:mixins="formgroup" blankLabel="Select..."
 					model="model" selected="selected" multiple="true" blankOption="never"/>
 				<t:submit />
@@ -17,13 +17,17 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<t:form>
+			<t:form t:id="formSingle">
 				<etc:multiselect t:id="single" t:mixins="formgroup" blankLabel="Select..."
 								 model="modelSingle" selected="selectedSingle" multiple="false" blankOption="always"/>
 				<t:submit />
 			</t:form>
 			Submitted values:
 			<span class="selectedSingle">${selectedSingle}</span>
+			<t:zone t:id="eventZoneSingle">
+				Selected value live update:
+				<p class="liveUpdateSingle">${selectedSingle}</p>
+			</t:zone>
 		</div>
 	</div>
 </html>
