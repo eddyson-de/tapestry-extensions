@@ -7,6 +7,7 @@
 Collection of useful(?) components and mixins for Apache Tapestry.
 Disclaimer: Some may not be ready for production. Use at your own risk.
 
+
 ## General Usage
 * Add the dependency to your `build.gradle`.
 * Declare library as xml namespace and
@@ -17,6 +18,10 @@ Disclaimer: Some may not be ready for production. Use at your own risk.
     <etc:multiselect></etc:multiselect>
 </html>
 ```
+
+## Examples
+For examples see the test app under [src/test](https://github.com/eddyson-de/tapestry-extensions/tree/master/src/test).
+You can run the test app manually via `gradle runTestApp`.
 
 ## Components
 
