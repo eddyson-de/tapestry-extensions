@@ -218,11 +218,22 @@ public class MultiSelect  extends AbstractField {
     if(string.startsWith("\"")){
       Object[] singleContextValue = new Object[1];
       String quotesRemoved = string.substring(1, string.length()-1);
-      singleContextValue[0] = encoder.toValue(quotesRemoved);
       List<Object> currentSelectedValue = new ArrayList<>();
       logger.debug("Single value submitted from component <{}> : {}",componentResources.getCompleteId(), singleContextValue[0]);
 
+      try {
+        singleContextValue[0] = encoder.toValue(quotesRemoved);
+      } catch (Exception e) {
+        if(!quotesRemoved.equals(BLANK_OPTION_VALUE)){
+          logger.error("Error encoding value {} sent from {} with encoder {}."
+                  , quotesRemoved
+                  , componentResources.getCompleteId()
+                  , encoder.getClass().getName());
+        }
+        singleContextValue[0] = quotesRemoved;
+      }
       if(!singleContextValue[0].equals(BLANK_OPTION_VALUE)){
+
         currentSelectedValue.add(singleContextValue[0]);
         componentResources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
       } else {
