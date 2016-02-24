@@ -41,7 +41,7 @@ Multiple selections based on [Select2](https://select2.github.io/).
 
 Tagging component with ajax search based on [Select2](https://select2.github.io/).
 
-Template `initialTags` parameter optional)
+Template (`initialTags` parameter optional)
 ```html
 <t:form>
 	<etc:tagging t:id="tagging1" tags="tags" initialTags="['First','Second']" ></etc:tagging>
