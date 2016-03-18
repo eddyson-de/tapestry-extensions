@@ -13,9 +13,9 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 ext.versions =
-        [slf4j: '1.7.18',
-         tapestry: '5.4.0',
-         selenium: '2.52.0']
+        [slf4j: '1.7.21',
+         tapestry: '5.4.1',
+         selenium: '2.53.0']
 
 ext.globalTestVersions =
         [spock: '1.0-groovy-2.4']
@@ -48,19 +48,19 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtime "de.eddyson:tapestry-webjars:0.9.3"
+  runtime "de.eddyson:tapestry-webjars:0.9.4"
 
   //Webjars
-  runtime ('org.webjars.npm:select2:4.0.2'){
+  runtime ('org.webjars.npm:select2:4.0.3'){
     exclude group: 'org.webjars.npm', module: 'almond'
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testCompile 'de.eddyson:tapestry-geb:0.26.0'
+  testCompile 'de.eddyson:tapestry-geb:0.27.0'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
 
   // Logback
-  testRuntime "ch.qos.logback:logback-classic:1.1.6"
+  testRuntime "ch.qos.logback:logback-classic:1.1.7"
 
   testRuntime "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
 
