@@ -72,7 +72,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "org.webjars:coffee-script:1.10.0"
+    classpath "org.webjars:coffee-script:1.11.0"
   }
 }
 
