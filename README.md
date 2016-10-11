@@ -1,4 +1,5 @@
 ![travis](https://travis-ci.org/eddyson-de/tapestry-extensions.svg?branch=master)
+[![codecov](https://codecov.io/gh/eddyson-de/tapestry-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/eddyson-de/tapestry-extensions)
 
 # Tapestry Extensions
 
