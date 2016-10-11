@@ -206,3 +206,9 @@ bintray {
 }
 
 check.dependsOn jacocoTestReport
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
