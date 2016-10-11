@@ -24,6 +24,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'jacoco'
 
 ext.versions =
         [slf4j: '1.7.21',
@@ -203,3 +204,5 @@ bintray {
         vcsUrl = 'https://github.com/eddyson-de/tapestry-extensions'
     }
 }
+
+check.dependsOn jacocoTestReport
