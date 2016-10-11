@@ -1,6 +1,5 @@
 package de.eddyson.tapestry.extensions.components;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -69,7 +68,7 @@ public class Tagging extends AbstractField {
   JSONObject completionValues(@RequestParameter(value = "q",allowBlank = true)String searchString){
     Object[] context = new Object[1];
     context[0] = searchString;
-    CaptureResultCallback callback = new CaptureResultCallback();
+    CaptureResultCallback<Object> callback = CaptureResultCallback.create();
     List<Object> completionsRaw = null;
     List<String> completions = null;
     if (searchString == null || searchString.equals("")) {
