@@ -14,9 +14,6 @@ cache:
   - $HOME/.gradle
   - $HOME/.m2
 
-env:
-  bintrayUser: fooberger
-
 deploy:
   provider: script
   script: ./gradlew bintrayUpload
