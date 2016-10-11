@@ -1,3 +1,16 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "org.webjars:coffee-script:1.11.0"
+  }
+}
+
+plugins {
+  id "com.jfrog.bintray" version "1.7.1"
+}
+  
 description = "Tapestry Extensions"
 
 import javax.script.Invocable
@@ -64,16 +77,6 @@ dependencies {
 
   testRuntime "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
 
-}
-
-
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "org.webjars:coffee-script:1.11.0"
-  }
 }
 
 tasks.withType(Test){
@@ -186,4 +189,15 @@ task runTestApp(type:JavaExec) {
   args "-d", "src/test/webapp/", "-p", "9040"
   systemProperties["tapestry.execution-mode"] = "test"
   classpath = configurations.testRuntime + sourceSets.test.output + sourceSets.main.output
+}
+
+bintray {
+    user = 'fooberger'
+    key = System.env.bintrayAPIKey
+    configurations = ['archives']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'de.eddyson:tapestry-extensions'
+    }
 }
