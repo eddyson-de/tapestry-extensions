@@ -1,3 +1,7 @@
+plugins {
+  id "com.jfrog.bintray" version "1.7.1"
+}
+  
 description = "Tapestry Extensions"
 
 import javax.script.Invocable
@@ -186,4 +190,15 @@ task runTestApp(type:JavaExec) {
   args "-d", "src/test/webapp/", "-p", "9040"
   systemProperties["tapestry.execution-mode"] = "test"
   classpath = configurations.testRuntime + sourceSets.test.output + sourceSets.main.output
+}
+
+bintray {
+    user = fooberger
+    key = System.env.bintrayAPIKey
+    configurations = ['archives']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'de.eddyson:tapestry-extensions'
+    }
 }
