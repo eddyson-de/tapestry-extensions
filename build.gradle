@@ -50,7 +50,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 group = "de.eddyson"
-version = "0.0.21"
+version = "0.0.22"
 
 repositories {
   jcenter()
@@ -61,7 +61,7 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtime "de.eddyson:tapestry-webjars:0.9.5"
+  runtime "de.eddyson:tapestry-webjars:0.9.6"
 
   //Webjars
   runtime ('org.webjars.npm:select2:4.0.3'){
