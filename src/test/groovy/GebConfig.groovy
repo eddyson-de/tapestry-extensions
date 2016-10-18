@@ -1,3 +1,4 @@
+import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
 
@@ -7,6 +8,14 @@ baseUrl = "http://localhost:${System.properties['jettyPort']}/"
 def sauce_username = System.properties['SAUCE_USERNAME']
 def sauce_access_key = System.properties['SAUCE_ACCESS_KEY']
 def tunnel_id = System.properties['TRAVIS_JOB_NUMBER']
+
+driver = {
+  DesiredCapabilities.firefox().with {
+    setCapability("marionette", false);
+    new FirefoxDriver(it)
+  }
+}
+
 environments {
   'sauce_chrome' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
