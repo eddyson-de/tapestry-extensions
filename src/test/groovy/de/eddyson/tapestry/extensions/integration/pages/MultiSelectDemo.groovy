@@ -17,6 +17,8 @@ class MultiSelectDemo extends TapestryPage {
     liveUpdate { $("p.liveUpdate") }
 
     selectSingle { $("#single")}
+    selectSingleContainer { $("#select2-single-container") }
+    selectSingleClear { $(".select2-selection__clear") }
     searchFieldSingle { $(".select2-search--dropdown").find(".select2-search__field") }
     selectedValueSingle { $("span.selectedSingle") }
     submitSingle { $("#formSingle").find("input[type=submit]") }

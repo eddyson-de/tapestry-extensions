@@ -38,7 +38,7 @@ class MultiSelectSpec extends JettyGebSpec {
     to MultiSelectDemo
 
     when:
-    $("#select2-single-container").click()
+    selectSingleContainer.click()
     waitFor {
       searchFieldSingle.isPresent()
     }
@@ -55,7 +55,7 @@ class MultiSelectSpec extends JettyGebSpec {
     to MultiSelectDemo
 
     when:
-    $("#select2-single-container").click()
+    selectSingleContainer.click()
     waitFor {
       searchFieldSingle.isPresent()
     }
@@ -65,10 +65,12 @@ class MultiSelectSpec extends JettyGebSpec {
 
     then:
     selectedValueSingle.text().contains('[Foo]')
-
+    waitFor {
+      selectSingleClear.displayed
+    }
     when:
-    $(".select2-selection__clear").click()
-    $("#select2-single-container").click()
+    selectSingleClear.click()
+    selectSingleContainer.click()
 
     then:
     waitFor {
