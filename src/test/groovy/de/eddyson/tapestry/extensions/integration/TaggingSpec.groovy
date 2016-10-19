@@ -21,7 +21,9 @@ class TaggingSpec extends JettyGebSpec{
     then:
     taglist.children().size() == 1
     taglist.children()[0].text()== "Foo"
-
+    waitFor {
+      search.displayed
+    }
     when:
     search << "New Tag"
     waitFor {$(".select2-results__option", text:"New Tag").displayed}
