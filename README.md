@@ -9,10 +9,21 @@ Disclaimer: Some may not be ready for production. Use at your own risk.
 
 
 ## General Usage
-* Add the dependency to your `build.gradle`.
+* Add the dependency to your `build.gradle`
 * Declare library as xml namespace and
 * use the components with your defined prefix.
 
+### `build.gradle`
+```groovy
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile "de.eddyson:tapestry-extensions:0.0.22"
+}
+```
+### `Page.tml`
 ```html
 <html xmlns:etc="tapestry-library:EddysonTapestryExtensions">
     <etc:multiselect></etc:multiselect>
