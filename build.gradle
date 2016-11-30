@@ -61,7 +61,7 @@ dependencies {
 
   compile "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtime "de.eddyson:tapestry-webjars:0.9.6"
+  runtime "de.eddyson:tapestry-webjars:1.0.0"
 
   //Webjars
   runtime ('org.webjars.npm:select2:4.0.3'){
