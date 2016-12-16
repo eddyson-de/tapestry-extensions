@@ -26,7 +26,7 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 ext.versions =
-        [slf4j: '1.7.21',
+        [slf4j: '1.7.22',
          tapestry: '5.4.1',
          selenium: '3.0.1']
 
