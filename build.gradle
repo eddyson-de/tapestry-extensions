@@ -69,11 +69,11 @@ dependencies {
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testCompile 'de.eddyson:tapestry-geb:0.30.2'
+  testCompile 'de.eddyson:tapestry-geb:0.31.1'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
 
   // Logback
-  testRuntime "ch.qos.logback:logback-classic:1.1.7"
+  testRuntime "ch.qos.logback:logback-classic:1.1.8"
 
   testRuntime "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
 
