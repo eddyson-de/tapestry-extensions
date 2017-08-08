@@ -27,11 +27,11 @@ apply plugin: 'maven'
 
 ext.versions =
         [slf4j: '1.7.22',
-         tapestry: '5.4.1',
-         selenium: '3.0.1']
+         tapestry: '5.4.3',
+         selenium: '3.4.0']
 
 ext.globalTestVersions =
-        [spock: '1.0-groovy-2.4']
+        [spock: '1.1-groovy-2.4']
 
 ext.packaging = 'jar'
 
@@ -69,11 +69,11 @@ dependencies {
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testCompile 'de.eddyson:tapestry-geb:0.31.1'
+  testCompile 'de.eddyson:tapestry-geb:0.36.1'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
 
   // Logback
-  testRuntime "ch.qos.logback:logback-classic:1.1.8"
+  testRuntime "ch.qos.logback:logback-classic:1.2.3"
 
   testRuntime "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
 
