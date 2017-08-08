@@ -77,5 +77,23 @@ class MultiSelectSpec extends JettyGebSpec {
       liveUpdateSingle.text().contains('[]')
     }
   }
+  
+  def "MultiSelect in a BeanEditor"(){
+    given:
+    to MultiSelectDemo
+
+    when:
+    selectBeaneditorContainer.click()
+    waitFor {
+      searchFieldBeaneditor.isPresent()
+    }
+    searchFieldBeaneditor << 'Fo'
+    searchFieldBeaneditor << Keys.ENTER
+    submitBeaneditor.click()
+
+    then:
+    selectedValueBeaneditor.text().contains('[Foo]')
+   
+  }
 
 }

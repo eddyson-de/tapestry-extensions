@@ -117,6 +117,9 @@ public class MultiSelect  extends AbstractField {
 
   @Parameter(value = "false")
   private boolean raw;
+  
+  @Parameter(value = "true")
+  private boolean async;
 
   @Property
   Object currentOption;
@@ -286,12 +289,14 @@ public class MultiSelect  extends AbstractField {
             "name", getControlName()+"[]",
             "id", getClientId(),
             "class", cssClass,
-    "data-change-uri", getChangeEventUrl(),
             "style", "display:none;"
 
            );
     if (multiple){
       writer.attributes("multiple", "multiple");
+    }
+    if (async){
+      writer.attributes("data-change-uri", getChangeEventUrl());
     }
 
     putPropertyNameIntoBeanValidationContext("selected");

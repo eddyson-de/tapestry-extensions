@@ -24,5 +24,11 @@ class MultiSelectDemo extends TapestryPage {
     selectedValueSingle { $("span.selectedSingle") }
     submitSingle { formSingle.find("input[type=submit]") }
     liveUpdateSingle { $("p.liveUpdateSingle")}
+    
+    beaneditform { $('#beaneditform') }
+    selectBeaneditorContainer { beaneditform.find('.select2-container') }
+    searchFieldBeaneditor { $(".select2-search--dropdown").find(".select2-search__field") }
+    submitBeaneditor { $('#beaneditform').find('input[type=submit]') }
+    selectedValueBeaneditor { $("span.selectedBeaneditor") }    
   }
 }

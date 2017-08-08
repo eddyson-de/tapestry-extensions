@@ -1,5 +1,5 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd"
-	t:type="Layout" title="MultiSelect Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions">
+	t:type="Layout" title="MultiSelect Demo" xmlns:etc="tapestry-library:EddysonTapestryExtensions" xmlns:p="tapestry:parameter">
 	<div class="row">
 		<div class="col-sm-12">
 			<t:form t:id="multiForm">
@@ -28,6 +28,21 @@
 				Selected value live update:
 				<p class="liveUpdateSingle">${selectedSingle}</p>
 			</t:zone>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<t:form t:id="beaneditform">
+				<t:beaneditor object="parrot">
+				  <p:favoriteWord>
+				    <etc:multiselect t:mixins="formgroup" blankLabel="Select..." async="false"
+				                     model="modelBeaneditor" encoder="encoder" selected="propertyEditContext.propertyValue" multiple="false" blankOption="never" label="prop:propertyEditContext.label"/>
+				  </p:favoriteWord>
+  		        </t:beaneditor>
+			    <t:submit />
+			</t:form>
+			Submitted values:
+			<span class="selectedBeaneditor">${parrot.favoriteWord}</span>
 		</div>
 	</div>
 </html>

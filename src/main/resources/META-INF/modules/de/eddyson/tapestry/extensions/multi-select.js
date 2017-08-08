@@ -23,14 +23,15 @@ define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, co
 
         $multiSelect.select2(options);
         $multiSelect.show();
+        if ($changeEventUri){
 
-        $multiSelect.on("change", function(e){
-            var jsonString = JSON.stringify($multiSelect.val());
-            console.debug(spec+" changed. Submitting new values: "+jsonString);
-            ajax($changeEventUri, {
-                data: {values: jsonString}});
-        });
-
+            $multiSelect.on("change", function(e){
+                var jsonString = JSON.stringify($multiSelect.val());
+                console.debug(spec+" changed. Submitting new values: "+jsonString);
+                ajax($changeEventUri, {
+                    data: {values: jsonString}});
+            });
+        }
 
     };
 });
