@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -77,6 +78,10 @@ public class MultiSelect  extends AbstractField {
 
   @Parameter(value = "true")
   boolean multiple;
+  
+  @Parameter(defaultPrefix = BindingConstants.LITERAL)
+  private String theme;
+
 
   @Property
   @Parameter(autoconnect = true)
@@ -192,7 +197,7 @@ public class MultiSelect  extends AbstractField {
   }
   void afterRender() {
     javaScriptSupport.require("de/eddyson/tapestry/extensions/multi-select").with(getClientId(), multiple, isRequired
-            (), blankLabel != null ? blankLabel : JSONObject.NULL);
+            (), blankLabel != null ? blankLabel : JSONObject.NULL, Optional.<Object>ofNullable(theme).orElse(JSONObject.NULL) );
   }
 
   public String getId(){
