@@ -17,11 +17,12 @@ class MultiSelectDemo extends TapestryPage {
     liveUpdate { $("p.liveUpdate") }
 
     selectSingle { $("#single")}
+    formSingle { $("#formSingle") }
     selectSingleContainer { $("#select2-single-container") }
-    selectSingleClear { $(".select2-selection__clear") }
+    selectSingleClear { formSingle.find(".select2-selection__clear") }
     searchFieldSingle { $(".select2-search--dropdown").find(".select2-search__field") }
     selectedValueSingle { $("span.selectedSingle") }
-    submitSingle { $("#formSingle").find("input[type=submit]") }
+    submitSingle { formSingle.find("input[type=submit]") }
     liveUpdateSingle { $("p.liveUpdateSingle")}
   }
 }
