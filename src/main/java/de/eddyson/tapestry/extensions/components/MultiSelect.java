@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 
 import org.apache.tapestry5.Binding;
 import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldValidationSupport;
 import org.apache.tapestry5.FieldValidator;
 import org.apache.tapestry5.MarkupWriter;
@@ -39,7 +38,6 @@ import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ValueEncoderSource;
-import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.slf4j.Logger;
 
 /**
@@ -51,24 +49,19 @@ import org.slf4j.Logger;
  * @author Fabian Kretzer
  */
 @Import(stylesheet = "webjars:select2:$version/dist/css/select2.css")
-public class MultiSelect  extends AbstractField {
+public class MultiSelect extends AbstractField {
 
   public static final String EVENT_CHANGED = "changed";
   public static final String SELECTION_CHANGED = "selection_changed";
   public static final String BLANK_OPTION_VALUE = "-1";
-  @Inject
-  ComponentResources componentResources;
-
-  @Inject
-  JavaScriptSupport javaScriptSupport;
-
+ 
   @Property
   @Parameter(required = true)
-  Collection selected;
+  Collection<Object> selected;
 
   @Property
   @Parameter(required = true, allowNull = false)
-  ValueEncoder encoder;
+  ValueEncoder<Object> encoder;
 
   @Inject
   Request request;
@@ -166,7 +159,7 @@ public class MultiSelect  extends AbstractField {
       String[] submittedValues = request.getParameters(controlName + "[]");
 
       logger.debug("Submitted value from MultiSelect with id -> {} are: {}"
-              , componentResources.getCompleteId(), submittedValues);
+              , resources.getCompleteId(), submittedValues);
       if (submittedValues != null){
         //Multiple values submitted
 
@@ -218,7 +211,7 @@ public class MultiSelect  extends AbstractField {
     public Object changed(final List<String> context
           ,@RequestParameter(value = "values", allowBlank = true)String string){
         logger.debug("Event <{}> from component <{}> with values: {}", EVENT_CHANGED
-                ,componentResources.getCompleteId(), string);
+                ,resources.getCompleteId(), string);
 
     CaptureResultCallback<Object> callback = new CaptureResultCallback<>();
 
@@ -227,7 +220,7 @@ public class MultiSelect  extends AbstractField {
       Object[] singleContextValue = new Object[1];
       String quotesRemoved = string.substring(1, string.length()-1);
       List<Object> currentSelectedValue = new ArrayList<>();
-      logger.debug("Single value submitted from component <{}> : {}",componentResources.getCompleteId(), singleContextValue[0]);
+      logger.debug("Single value submitted from component <{}> : {}",resources.getCompleteId(), singleContextValue[0]);
 
       try {
         singleContextValue[0] = encoder.toValue(quotesRemoved);
@@ -235,7 +228,7 @@ public class MultiSelect  extends AbstractField {
         if(!quotesRemoved.equals(BLANK_OPTION_VALUE)){
           logger.error("Error encoding value {} sent from {} with encoder {}."
                   , quotesRemoved
-                  , componentResources.getCompleteId()
+                  , resources.getCompleteId()
                   , encoder.getClass().getName());
         }
         singleContextValue[0] = quotesRemoved;
@@ -243,10 +236,10 @@ public class MultiSelect  extends AbstractField {
       if(!singleContextValue[0].equals(BLANK_OPTION_VALUE)){
 
         currentSelectedValue.add(singleContextValue[0]);
-        componentResources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
+        resources.triggerEvent(SELECTION_CHANGED, singleContextValue,callback);
       } else {
-        logger.debug("Single value submitted from component <{}> : {} is blank option. Clearing context.",componentResources.getCompleteId(), singleContextValue[0]);
-        componentResources.triggerEvent(SELECTION_CHANGED, null ,callback);
+        logger.debug("Single value submitted from component <{}> : {} is blank option. Clearing context.",resources.getCompleteId(), singleContextValue[0]);
+        resources.triggerEvent(SELECTION_CHANGED, null ,callback);
       }
       this.selected = currentSelectedValue;
 
@@ -259,26 +252,26 @@ public class MultiSelect  extends AbstractField {
                 .collect(Collectors.toList());
 
         Object[] newContext = Stream.concat(sentValues.stream(), context.stream()).toArray();
-        logger.debug("Values submitted from component <{}> -> Encoded:  {}",componentResources.getCompleteId(),newContext);
+        logger.debug("Values submitted from component <{}> -> Encoded:  {}",resources.getCompleteId(),newContext);
 
-        componentResources.triggerEvent(SELECTION_CHANGED, newContext, callback);
+        resources.triggerEvent(SELECTION_CHANGED, newContext, callback);
 
         this.selected = sentValues;
       } catch (RuntimeException e){
-        logger.error("Could not decode multiple values from <{}> event. From component: {}. Submitted values: {}. Exception: {}", EVENT_CHANGED, componentResources.getCompleteId(), string, e.getMessage());
-        componentResources.triggerEvent(SELECTION_CHANGED, null, callback);
+        logger.error("Could not decode multiple values from <{}> event. From component: {}. Submitted values: {}. Exception: {}", EVENT_CHANGED, resources.getCompleteId(), string, e.getMessage());
+        resources.triggerEvent(SELECTION_CHANGED, null, callback);
         this.selected = null;
       }
     } else {
-      componentResources.triggerEvent(SELECTION_CHANGED, null, callback);
-      logger.debug("Could not decode value from <{}> event. From component: {}. Submitted values: {}", EVENT_CHANGED, componentResources.getCompleteId(), string);
+      resources.triggerEvent(SELECTION_CHANGED, null, callback);
+      logger.debug("Could not decode value from <{}> event. From component: {}. Submitted values: {}", EVENT_CHANGED, resources.getCompleteId(), string);
       this.selected = null;
     }
     return callback.getResult();
     }
 
   public String getChangeEventUrl(){
-    return this.componentResources.createEventLink(EVENT_CHANGED).toURI();
+    return this.resources.createEventLink(EVENT_CHANGED).toURI();
   }
 
 

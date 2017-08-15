@@ -3,7 +3,6 @@ package de.eddyson.tapestry.extensions.components;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
@@ -41,11 +40,7 @@ public class Tagging extends AbstractField {
   @Inject
   TypeCoercer typeCoercer;
 
-  @Inject
-  ComponentResources componentResources;
-
-
-
+ 
   /**
    * Method implemented by subclasses to actually do the work of processing the submission of the form. The element's
    * controlName property will already have been set. This method is only invoked if the field is <strong>not
@@ -69,12 +64,12 @@ public class Tagging extends AbstractField {
     Object[] context = new Object[1];
     context[0] = searchString;
     CaptureResultCallback<Object> callback = CaptureResultCallback.create();
-    List<Object> completionsRaw = null;
+    List<?> completionsRaw = null;
     List<String> completions = null;
     if (searchString == null || searchString.equals("")) {
       completions = initialTags;
     } else {
-      componentResources.triggerEvent("completeTags", context, callback);
+      resources.triggerEvent("completeTags", context, callback);
       completionsRaw = typeCoercer.coerce(callback.getResult(), List.class);
     }
 
@@ -82,7 +77,7 @@ public class Tagging extends AbstractField {
       completions = completionsRaw.stream()
               .map(completion -> typeCoercer.coerce(completion, String.class)).collect(Collectors.toList());
     }
-    logger.debug("Coerced tag completions for Tagging component ({}): {}", componentResources.getId(), completions);
+    logger.debug("Coerced tag completions for Tagging component ({}): {}", resources.getId(), completions);
 
     JSONArray completionsArray = new JSONArray();
     if (completions != null) {
@@ -108,7 +103,7 @@ public class Tagging extends AbstractField {
   }
 
   void afterRender(){
-    javaScriptSupport.require("de/eddyson/tapestry/extensions/tagging").with(getClientId(), componentResources
+    javaScriptSupport.require("de/eddyson/tapestry/extensions/tagging").with(getClientId(), resources
             .createEventLink("internalComplete").toURI(),placeholder);
   }
 }
