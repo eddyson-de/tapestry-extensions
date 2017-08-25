@@ -3,10 +3,13 @@ language: java
 jdk:
   - oraclejdk8
 
+env:
+  - GEB_SAUCE_SETTING=chrome
+  - GEB_SAUCE_SETTING=firefox
+  - GEB_SAUCE_SETTING=ie
+
 script:
-  - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=chrome
-  - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=firefox
-  - ./gradlew test -DTRAVIS=true -DGEB_SAUCE_SETTING=ie
+  - ./gradlew -DTRAVIS=true check
 
 cache:
   directories:
