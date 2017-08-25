@@ -4,12 +4,9 @@ jdk:
   - oraclejdk8
 
 env:
-  - GEB_SAUCE_SETTING=chrome
-  - GEB_SAUCE_SETTING=firefox
-  - GEB_SAUCE_SETTING=ie
-
-script:
-  - ./gradlew -DTRAVIS=true check
+  - GEB_ENVIRONMENT=sauce_chrome
+  - GEB_ENVIRONMENT=sauce_firefox
+  - GEB_ENVIRONMENT=sauce_ie
 
 cache:
   directories:
