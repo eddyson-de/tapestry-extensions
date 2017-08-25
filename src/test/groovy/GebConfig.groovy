@@ -41,7 +41,7 @@ environments {
   'sauce_firefox' {
     URL baseUrl = new URL("http://${sauce_username}:${sauce_access_key}@localhost:4445/wd/hub")
     DesiredCapabilities capa = DesiredCapabilities.firefox()
-    capa.setVersion("beta")
+    capa.setVersion("latest")
     capa.setCapability("tunnel-identifier", tunnel_id)
 
     driver = {
