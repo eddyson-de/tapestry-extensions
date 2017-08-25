@@ -2,6 +2,8 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 import org.openqa.selenium.remote.RemoteWebDriver
 
+import io.github.bonigarcia.wdm.FirefoxDriverManager
+
 reportsDir = 'build/reports/geb'
 baseUrl = "http://localhost:${System.properties['jettyPort']}/"
 
@@ -10,10 +12,8 @@ def sauce_access_key = System.properties['SAUCE_ACCESS_KEY']
 def tunnel_id = System.properties['TRAVIS_JOB_NUMBER']
 
 driver = {
-  DesiredCapabilities.firefox().with {
-    setCapability("marionette", false);
-    new FirefoxDriver(it)
-  }
+  FirefoxDriverManager.getInstance().setup()
+  new FirefoxDriver()
 }
 
 environments {
@@ -69,10 +69,9 @@ environments {
     }
   }
 }
-environments.each{
-  env ->
-    env.waiting {
-      timeout = 30
-      retryInterval = 1.0
-    }
+environments.each{ env ->
+  env.waiting {
+    timeout = 30
+    retryInterval = 1.0
+  }
 }
