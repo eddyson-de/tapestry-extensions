@@ -71,6 +71,7 @@ dependencies {
 
   testCompile 'de.eddyson:tapestry-geb:0.37.1'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
+  testCompile "io.github.bonigarcia:webdrivermanager:1.7.1"
 
   // Logback
   testRuntime "ch.qos.logback:logback-classic:1.2.3"
