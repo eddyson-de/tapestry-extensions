@@ -91,29 +91,23 @@ tasks.withType(Test){
 }
 
 test {
-  systemProperties['SAUCE_USERNAME'] = System.env.SAUCE_USERNAME
-  systemProperties['SAUCE_ACCESS_KEY'] = System.env.SAUCE_ACCESS_KEY
-  systemProperties['TRAVIS_JOB_NUMBER'] = System.env.TRAVIS_JOB_NUMBER
-  def gebenv
-  if (System.properties['os.name'].toLowerCase().contains('windows')){
-    gebenv = 'ie'
-  } else if(System.properties['TRAVIS'] == 'true'){
-    gebenv = 'travis'
+  def travisJobNumber = System.env.TRAVIS_JOB_NUMBER
+  
+  if (travisJobNumber){
+    systemProperties['TRAVIS_JOB_NUMBER'] = travisJobNumber
+    systemProperties['SAUCE_USERNAME'] = System.env.SAUCE_USERNAME
+    systemProperties['SAUCE_ACCESS_KEY'] = System.env.SAUCE_ACCESS_KEY
     systemProperty 'jettyPort', 9876
-    def gebSetting = System.properties['GEB_SAUCE_SETTING']
-    if ( gebSetting == "ie"){
-      gebenv = "sauce_ie"
-    } else if (gebSetting == "safari"){
-      gebenv = "sauce_safari"
-    } else if (gebSetting == "chrome"){
-      gebenv = "sauce_chrome"
-    } else if (gebSetting == "ipad"){
-      gebenv = "sauce_ipad"
-    } else if (gebSetting == "firefox"){
-      gebenv = "sauce_firefox"
+  }
+  
+  def gebenv = System.properties.'geb.env' ?: System.env.'GEB_ENVIRONMENT'
+  if (gebenv == null){
+    // try to find a sane default
+    if (System.properties['os.name'].toLowerCase().contains('windows')){
+      gebenv = 'ie'
+    } else {
+      gebenv = 'firefox'
     }
-  } else {
-    gebenv = 'firefox'
   }
 
   systemProperty 'geb.env', gebenv
