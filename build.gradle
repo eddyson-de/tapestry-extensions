@@ -64,7 +64,7 @@ dependencies {
   runtime "de.eddyson:tapestry-webjars:1.0.0"
 
   //Webjars
-  runtime ('org.webjars.npm:select2:4.0.3'){
+  runtime ('org.webjars.npm:select2:4.0.4'){
     exclude group: 'org.webjars.npm', module: 'almond'
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
