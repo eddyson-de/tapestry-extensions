@@ -72,7 +72,7 @@ dependencies {
   testCompile 'de.eddyson:tapestry-geb:0.38.0'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
   testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"
-  testCompile "io.github.bonigarcia:webdrivermanager:1.7.1"
+  testCompile "io.github.bonigarcia:webdrivermanager:1.7.2"
   
 
   // Logback
