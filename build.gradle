@@ -26,7 +26,7 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 ext.versions =
-        [slf4j: '1.7.22',
+        [slf4j: '1.7.25',
          tapestry: '5.4.3',
          selenium: '3.6.0']
 
@@ -50,7 +50,7 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 group = "de.eddyson"
-version = "0.0.26"
+version = "0.0.27"
 
 repositories {
   jcenter()
@@ -64,12 +64,12 @@ dependencies {
   runtime "de.eddyson:tapestry-webjars:1.0.0"
 
   //Webjars
-  runtime ('org.webjars.npm:select2:4.0.4'){
+  runtime ('org.webjars.npm:select2:4.0.5'){
     exclude group: 'org.webjars.npm', module: 'almond'
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testCompile 'de.eddyson:tapestry-geb:0.38.0'
+  testCompile 'de.eddyson:tapestry-geb:0.39.0'
   testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
   testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"
   testCompile "io.github.bonigarcia:webdrivermanager:1.7.2"

@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  compile "de.eddyson:tapestry-extensions:0.0.22"
+  compile "de.eddyson:tapestry-extensions:0.0.27"
 }
 ```
 ### `Page.tml`
