@@ -20,6 +20,7 @@ deploy:
   on:
     branch: master
     tags: true
+    condition: $GEB_ENVIRONMENT = sauce_chrome
 
 addons:
   sauce_connect:
