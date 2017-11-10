@@ -174,13 +174,6 @@ artifacts {
   archives sourcesJar
 }
 
-// don't try to deploy SNAPSHOT versions in CI
-tasks.findByName("artifactoryPublish")?.with { task ->
-  if (version ==~ /.*-SNAPSHOT/){
-    task.enabled = false
-  }
-}
-
 task runTestApp(type:JavaExec) {
   main = 'org.apache.tapestry5.test.Jetty7Runner'
   args "-d", "src/test/webapp/", "-p", "9040"
