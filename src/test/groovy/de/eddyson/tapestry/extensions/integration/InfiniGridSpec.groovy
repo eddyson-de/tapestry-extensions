@@ -10,7 +10,7 @@ class InfiniGridSpec extends JettyGebSpec {
     (from..to).findAll{it % 10 == 0}.each{infinigridBody.jquery.scrollTop(it)}
   }
 
-  def "Scoll through an InfiniGrid"(){
+  def "Scroll through an InfiniGrid"(){
     given:
     to InfiniGridDemo
 
