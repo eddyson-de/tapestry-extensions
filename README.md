@@ -1,4 +1,4 @@
-![travis](https://travis-ci.org/eddyson-de/tapestry-extensions.svg?branch=master)
+![ci](https://github.com/eddyson-de/tapestry-extensions/actions/workflows/main.yml/badge.svg)
 
 # Tapestry Extensions
 
@@ -16,11 +16,11 @@ Disclaimer: Some may not be ready for production. Use at your own risk.
 ### `build.gradle`
 ```groovy
 repositories {
-  jcenter()
+  maven { url "https://jitpack.io" }
 }
 
 dependencies {
-  compile "de.eddyson:tapestry-extensions:0.0.27"
+  implementation "com.github.eddyson-de:tapestry-extensions:0.0.27"
 }
 ```
 ### `Page.tml`
