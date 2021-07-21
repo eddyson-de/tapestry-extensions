@@ -1,195 +1,109 @@
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath "org.webjars:coffee-script:1.11.0"
-  }
-}
-
 plugins {
-  id "com.jfrog.bintray" version "1.8.0"
+  id "java"
+  id "groovy"
+  id "maven-publish"
+  id "com.github.node-gradle.node" version "3.1.0"
 }
-  
+
 description = "Tapestry Extensions"
-
-import javax.script.Invocable
-import javax.script.ScriptContext
-import javax.script.ScriptEngine
-import javax.script.ScriptEngineManager
-import javax.script.ScriptException
-
-
-apply plugin: 'java'
-apply plugin: 'groovy'
-apply plugin: 'idea'
-apply plugin: 'maven'
-
-ext.versions =
-        [slf4j: '1.7.25',
-         tapestry: '5.4.3',
-         selenium: '3.8.1']
-
-ext.globalTestVersions =
-        [spock: '1.1-groovy-2.4']
-
-ext.packaging = 'jar'
-
-idea {
-  module {
-    inheritOutputDirs = false
-    outputDir = file("build/classes/main")
-    testOutputDir = file('build/classes/test')
-
-    downloadJavadoc = true
-    downloadSources = true
-  }
-}
-
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
-
 group = "de.eddyson"
 version = "0.0.27"
 
+def versions = [
+    slf4j: '1.7.31',
+    tapestry: '5.6.1',
+    selenium: '3.141.59'
+]
+
+sourceCompatibility = "11"
+
 repositories {
-  jcenter()
+  mavenCentral()
+  maven { url "https://jitpack.io" }
 }
 
 dependencies {
-  compile "org.apache.tapestry:tapestry-core:$versions.tapestry"
+  implementation "org.apache.tapestry:tapestry-core:$versions.tapestry"
 
-  compile "org.slf4j:slf4j-api:$versions.slf4j"
+  implementation "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtime "de.eddyson:tapestry-webjars:1.0.0"
+  runtimeOnly "com.github.eddyson-de:tapestry-webjars:1.0.0"
 
   //Webjars
-  runtime ('org.webjars.npm:select2:4.0.5'){
+  runtimeOnly('org.webjars.npm:select2:4.0.5') {
     exclude group: 'org.webjars.npm', module: 'almond'
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testCompile 'de.eddyson:tapestry-geb:0.41.1'
-  testCompile "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
-  testCompile "org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"
-  testCompile "io.github.bonigarcia:webdrivermanager:2.0.0"
-  
+  testImplementation "org.spockframework:spock-tapestry:1.3-groovy-2.5"
+  testImplementation "org.gebish:geb-spock:4.1"
+  testImplementation "com.github.eddyson-de:tapestry-geb:0.45.2"
+  testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
+  testImplementation "org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"
+  testImplementation "io.github.bonigarcia:webdrivermanager:4.4.3"
+
 
   // Logback
-  testRuntime "ch.qos.logback:logback-classic:1.2.3"
+  testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
-  testRuntime "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
-
+  testRuntimeOnly "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
 }
 
-tasks.withType(Test){
-  systemProperties["tapestry.service-reloading-enabled"] = "false"
-  systemProperties["tapestry.execution-mode"] = "test"
-  systemProperty 'webappLocation', 'src/test/webapp'
-  systemProperty 'jettyPort', 9040
+tasks.withType(Test) {
+  systemProperty "geb.env", System.getProperty("geb.env") ?: 'firefox'
+  systemProperty "tapestry.service-reloading-enabled", "false"
+  systemProperty "tapestry.execution-mode", "test"
+  systemProperty "webappLocation", "src/test/webapp"
+  systemProperty "jettyPort", 9040
   enableAssertions = true
 }
 
-test {
-  def travisJobNumber = System.env.TRAVIS_JOB_NUMBER
-  
-  if (travisJobNumber){
-    systemProperties['TRAVIS_JOB_NUMBER'] = travisJobNumber
-    systemProperties['SAUCE_USERNAME'] = System.env.SAUCE_USERNAME
-    systemProperties['SAUCE_ACCESS_KEY'] = System.env.SAUCE_ACCESS_KEY
-    systemProperty 'jettyPort', 9876
-  }
-  
-  def gebenv = System.properties.'geb.env' ?: System.env.'GEB_ENVIRONMENT'
-  if (gebenv == null){
-    // try to find a sane default
-    if (System.properties['os.name'].toLowerCase().contains('windows')){
-      gebenv = 'ie'
-    } else {
-      gebenv = 'firefox'
-    }
-  }
-
-  systemProperty 'geb.env', gebenv
+node {
+  download = true
+  version = "14.17.3"
 }
 
-@groovy.transform.TypeChecked
-class CoffeeScriptCompilerReader extends FilterReader {
+def compiledCoffeeScriptDir = "${project.buildDir}/compiled-coffeescript"
 
-  static String compilerText = Thread.currentThread().contextClassLoader.getResourceAsStream('META-INF/resources/webjars/coffee-script/1.11.0/coffee-script.min.js').text
+task compileCoffeeScript(type: NpxTask) {
+  dependsOn npmInstall
 
-  CoffeeScriptCompilerReader(Reader r){
-    super(createJavaScriptReader(r))
-  }
+  command = "coffee"
+  args = [ "-c", "-o", compiledCoffeeScriptDir, 'src/main/resources/META-INF/modules' ]
 
-  static Reader createJavaScriptReader(final Reader coffeeScriptReader) throws ScriptException {
-      String coffee = coffeeScriptReader.text
-      String compiled = compileCoffeeScript(coffee, true);
-      return new StringReader(compiled);
-  }
+  inputs.files fileTree(dir: 'src/main/resources/META-INF/modules', include: '**/*.coffee')
+  outputs.dir compiledCoffeeScriptDir
 
-  static String compileCoffeeScript(String coffeeScript, boolean bare){
-      new ScriptEngineManager().getEngineByMimeType("text/javascript").with {
-        eval(CoffeeScriptCompilerReader.compilerText)
-        Object params = eval(String.format("(function(){return {\"bare\":%s};}())", bare));
-        Object cs = getContext().getBindings(ScriptContext.ENGINE_SCOPE).get("CoffeeScript");
-        ((Invocable) delegate).invokeMethod(cs, "compile", coffeeScript, params)
-      }
+  doFirst {
+    delete compiledCoffeeScriptDir
   }
 }
-
-new CoffeeScriptCompilerReader(new StringReader("foo"))
 
 jar {
+  dependsOn compileCoffeeScript
   manifest { attributes 'Tapestry-Module-Classes': 'de.eddyson.tapestry.extensions.modules.ExtensionsModule' }
-  eachFile { f->
-    if (f.sourceName ==~ /.*\.coffee$/){
-      f.filter(CoffeeScriptCompilerReader)
-      f.name = f.sourceName.replaceFirst(/\.coffee$/, '.js')
-    }
-  }
+  rootSpec.exclude 'META-INF/modules/**/*.coffee'
+  from(compiledCoffeeScriptDir){ into "META-INF/modules" }
 }
 
-configure(install.repositories.mavenInstaller) {
-  pom.project {
-    inceptionYear '2015'
-    packaging 'jar'
-    licenses {
-      license {
-        name 'The Apache Software License, Version 2.0'
-        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-        distribution 'repo'
-      }
-    }
-  }
-}
-
-task sourcesJar(type: Jar, dependsOn:classes) {
-  classifier = 'sources'
+task sourceJar(type: Jar) {
+  dependsOn classes
+  classifier "sources"
   from sourceSets.main.allSource
 }
 
-artifacts {
-  archives jar
-  archives sourcesJar
+publishing {
+  publications {
+    maven(MavenPublication) {
+      from components.java
+      artifact tasks.sourceJar
+    }
+  }
 }
 
 task runTestApp(type:JavaExec) {
-  main = 'org.apache.tapestry5.test.Jetty7Runner'
+  mainClass = "org.apache.tapestry5.test.JettyRunner"
   args "-d", "src/test/webapp/", "-p", "9040"
-  systemProperties["tapestry.execution-mode"] = "test"
-  classpath = configurations.testRuntime + sourceSets.test.output + sourceSets.main.output
-}
-
-bintray {
-    user = 'fooberger'
-    key = System.env.bintrayAPIKey
-    configurations = ['archives']
-    publish = true
-    pkg {
-        repo = 'maven'
-        name = 'de.eddyson:tapestry-extensions'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/eddyson-de/tapestry-extensions'
-    }
+  systemProperty "tapestry.execution-mode", "test"
+  classpath = configurations.testRuntimeClasspath + sourceSets.test.output + sourceSets.main.output
 }
