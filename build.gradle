@@ -7,7 +7,7 @@ plugins {
 
 description = "Tapestry Extensions"
 group = "de.eddyson"
-version = "0.0.27"
+version = "0.1.0"
 
 def versions = [
     slf4j: '1.7.31',
