@@ -1,8 +1,7 @@
 package de.eddyson.testapp.pages;
 
-import java.util.List;
-
-
+import de.eddyson.tapestry.extensions.components.MultiSelect;
+import de.eddyson.testapp.Parrot;
 import org.apache.tapestry5.ValueEncoder;
 import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -12,12 +11,11 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.internal.services.StringValueEncoder;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.internal.util.CollectionFactory;
 import org.apache.tapestry5.services.PropertyEditContext;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import org.slf4j.Logger;
-import de.eddyson.tapestry.extensions.components.MultiSelect;
-import de.eddyson.testapp.Parrot;
+
+import java.util.List;
 
 public class MultiSelectDemo {
 
@@ -28,7 +26,7 @@ public class MultiSelectDemo {
   @Property
   @Persist
   private List<String> selectedSingle;
-  
+
   @Property
   @Persist
   private Parrot parrot;
@@ -44,13 +42,13 @@ public class MultiSelectDemo {
 
   @Inject
   Logger logger;
-  
+
   @Environmental
   @Property(write=false)
   private PropertyEditContext propertyEditContext;
 
   public Object getModel() {
-    return CollectionFactory.newList("Bar", "Foo", "Hello", "World");
+    return List.of("Bar", "Foo", "Hello", "World");
   }
 
   public ValueEncoder<String> getEncoder() {
@@ -74,18 +72,18 @@ public class MultiSelectDemo {
   }
 
   public Object getModelSingle() {
-    return CollectionFactory.newList("Bar", "Foo", "Hello", "World");
+    return List.of("Bar", "Foo", "Hello", "World");
   }
-  
+
   public Object getModelBeanEditor() {
-    return CollectionFactory.newList("Bar", "Foo", "Hello", "World");
+    return List.of("Bar", "Foo", "Hello", "World");
   }
-  
+
   void setupRender() {
     if (parrot == null) {
       parrot = new Parrot();
     }
-    
+
   }
-  
+
 }

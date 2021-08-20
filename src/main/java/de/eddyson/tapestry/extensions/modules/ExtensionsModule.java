@@ -1,8 +1,9 @@
 package de.eddyson.tapestry.extensions.modules;
 
 import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.ioc.Configuration;
-import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.commons.Configuration;
+import org.apache.tapestry5.commons.MappedConfiguration;
+import org.apache.tapestry5.commons.Resource;
 import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.services.LibraryMapping;
 import org.apache.tapestry5.services.javascript.JavaScriptModuleConfiguration;
@@ -21,7 +22,7 @@ public class ExtensionsModule {
 
   @Contribute(ModuleManager.class)
   public static void setupJSModules(final MappedConfiguration<String, JavaScriptModuleConfiguration> configuration,
-                                    @Path("webjars:select2:$version/dist/js/select2.js") final org.apache.tapestry5.ioc.Resource select2) {
+                                    @Path("webjars:select2:$version/dist/js/select2.js") final Resource select2) {
 
     //For MultiSelect
     configuration.add("select2", new JavaScriptModuleConfiguration(select2));

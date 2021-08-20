@@ -1,15 +1,5 @@
 package de.eddyson.tapestry.extensions.components;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.apache.tapestry5.Binding;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.FieldValidationSupport;
@@ -27,18 +17,27 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.RequestParameter;
 import org.apache.tapestry5.annotations.SetupRender;
+import org.apache.tapestry5.commons.Messages;
+import org.apache.tapestry5.commons.internal.util.GenericsUtils;
 import org.apache.tapestry5.corelib.base.AbstractField;
 import org.apache.tapestry5.corelib.data.BlankOption;
+import org.apache.tapestry5.http.services.Request;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.internal.util.SelectModelRenderer;
-import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.internal.util.GenericsUtils;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ValueEncoderSource;
 import org.slf4j.Logger;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * (Multi)Selection component for Tapestry based on Select2
@@ -54,10 +53,10 @@ public class MultiSelect extends AbstractField {
   public static final String EVENT_CHANGED = "changed";
   public static final String SELECTION_CHANGED = "selection_changed";
   public static final String BLANK_OPTION_VALUE = "-1";
- 
+
   @Property
   @Parameter(required = true)
-  Collection<Object> selected;
+  List<Object> selected;
 
   @Property
   @Parameter(required = true, allowNull = false)
@@ -71,7 +70,7 @@ public class MultiSelect extends AbstractField {
 
   @Parameter(value = "true")
   boolean multiple;
-  
+
   @Parameter(defaultPrefix = BindingConstants.LITERAL)
   private String theme;
 
@@ -86,7 +85,7 @@ public class MultiSelect extends AbstractField {
 
   @Inject
   private ValueEncoderSource valueEncoderSource;
-  
+
   /**
    * Performs input validation on the value supplied by the user in the form submission.
    */
@@ -110,7 +109,7 @@ public class MultiSelect extends AbstractField {
 
   @Parameter(value = "false")
   private boolean raw;
-  
+
   @Parameter(value = "true")
   private boolean async;
 
@@ -369,11 +368,11 @@ public class MultiSelect extends AbstractField {
   {
     return this.defaultProvider.defaultValidatorBinding("selected", this.resources);
   }
-  
+
   ValueEncoder<?> defaultEncoder()
   {
     Type parameterType = resources.getBoundGenericType("selected");
-    
+
     if (parameterType == null || !(parameterType instanceof ParameterizedType)) {
       return null;
     }

@@ -1,9 +1,10 @@
 package de.eddyson.tapestry.extensions;
 
+import org.apache.tapestry5.beanmodel.PropertyConduit;
+
 import java.lang.annotation.Annotation;
 import java.util.function.Function;
 
-import org.apache.tapestry5.PropertyConduit;
 
 /**
  * Default {@link PropertyConduit} implementation that can be used to display a

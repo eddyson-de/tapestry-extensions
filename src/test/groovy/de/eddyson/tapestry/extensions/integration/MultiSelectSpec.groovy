@@ -1,8 +1,8 @@
 package de.eddyson.tapestry.extensions.integration
+
 import de.eddyson.tapestry.extensions.integration.pages.MultiSelectDemo
 import de.eddyson.tapestrygeb.JettyGebSpec
 import org.openqa.selenium.Keys
-
 
 class MultiSelectSpec extends JettyGebSpec {
 
@@ -77,7 +77,7 @@ class MultiSelectSpec extends JettyGebSpec {
       liveUpdateSingle.text().contains('[]')
     }
   }
-  
+
   def "MultiSelect in a BeanEditor"(){
     given:
     to MultiSelectDemo
@@ -93,7 +93,5 @@ class MultiSelectSpec extends JettyGebSpec {
 
     then:
     selectedValueBeaneditor.text().contains('[Foo]')
-   
   }
-
 }

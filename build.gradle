@@ -7,11 +7,11 @@ plugins {
 
 description = "Tapestry Extensions"
 group = "de.eddyson"
-version = "0.1.0"
+version = "0.2.0"
 
 def versions = [
-    slf4j: '1.7.31',
-    tapestry: '5.6.1',
+    slf4j: '1.7.32',
+    tapestry: '5.7.3',
     selenium: '3.141.59'
 ]
 
@@ -27,24 +27,24 @@ dependencies {
 
   implementation "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtimeOnly "com.github.eddyson-de:tapestry-webjars:1.0.0"
+  runtimeOnly "com.github.eddyson-de:tapestry-webjars:1.1.2"
 
   //Webjars
-  runtimeOnly('org.webjars.npm:select2:4.0.5') {
+  runtimeOnly('org.webjars.npm:select2:4.0.13') {
     exclude group: 'org.webjars.npm', module: 'almond'
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testImplementation "org.spockframework:spock-tapestry:1.3-groovy-2.5"
+  testImplementation "org.apache.tapestry:tapestry-spock:$versions.tapestry"
   testImplementation "org.gebish:geb-spock:4.1"
-  testImplementation "com.github.eddyson-de:tapestry-geb:0.45.2"
+  testImplementation "com.github.eddyson-de:tapestry-geb:0.46.0"
   testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
   testImplementation "org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"
   testImplementation "io.github.bonigarcia:webdrivermanager:4.4.3"
 
 
   // Logback
-  testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
+  testRuntimeOnly 'ch.qos.logback:logback-classic:1.2.5'
 
   testRuntimeOnly "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
 }

@@ -1,22 +1,23 @@
 package de.eddyson.tapestry.extensions.components;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.RequestParameter;
+import org.apache.tapestry5.commons.services.TypeCoercer;
 import org.apache.tapestry5.corelib.base.AbstractField;
+import org.apache.tapestry5.http.services.Request;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.ioc.annotations.Inject;
-import org.apache.tapestry5.ioc.services.TypeCoercer;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
-import org.apache.tapestry5.services.Request;
 import org.slf4j.Logger;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Import(stylesheet = "webjars:select2:$version/dist/css/select2.css")
 public class Tagging extends AbstractField {
@@ -40,7 +41,7 @@ public class Tagging extends AbstractField {
   @Inject
   TypeCoercer typeCoercer;
 
- 
+
   /**
    * Method implemented by subclasses to actually do the work of processing the submission of the form. The element's
    * controlName property will already have been set. This method is only invoked if the field is <strong>not

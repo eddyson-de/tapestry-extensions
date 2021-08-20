@@ -1,10 +1,10 @@
 package de.eddyson.tapestry.extensions.mixins;
 
-import java.util.List;
-
 import org.apache.tapestry5.annotations.InjectContainer;
-import org.apache.tapestry5.beaneditor.BeanModel;
+import org.apache.tapestry5.beanmodel.BeanModel;
 import org.apache.tapestry5.corelib.components.Grid;
+
+import java.util.List;
 
 public class UnsortableGrid {
 

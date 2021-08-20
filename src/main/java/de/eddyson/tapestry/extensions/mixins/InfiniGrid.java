@@ -1,25 +1,23 @@
 package de.eddyson.tapestry.extensions.mixins;
 
-import java.util.List;
-
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.EventConstants;
-import org.apache.tapestry5.PropertyConduit;
 import org.apache.tapestry5.PropertyOverrides;
 import org.apache.tapestry5.annotations.BindParameter;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
 import org.apache.tapestry5.annotations.RequestParameter;
-import org.apache.tapestry5.beaneditor.BeanModel;
-import org.apache.tapestry5.beaneditor.PropertyModel;
+import org.apache.tapestry5.beanmodel.BeanModel;
+import org.apache.tapestry5.beanmodel.PropertyConduit;
+import org.apache.tapestry5.beanmodel.PropertyModel;
+import org.apache.tapestry5.commons.Messages;
 import org.apache.tapestry5.corelib.components.Any;
 import org.apache.tapestry5.corelib.components.Grid;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
 import org.apache.tapestry5.grid.GridDataSource;
 import org.apache.tapestry5.grid.SortConstraint;
 import org.apache.tapestry5.internal.PropertyOverridesImpl;
-import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
@@ -28,6 +26,8 @@ import org.apache.tapestry5.services.Environment;
 import org.apache.tapestry5.services.PartialTemplateRenderer;
 import org.apache.tapestry5.services.PropertyOutputContext;
 import org.apache.tapestry5.services.javascript.JavaScriptSupport;
+
+import java.util.List;
 
 @Import(stylesheet = "infinigrid.css")
 public class InfiniGrid {
