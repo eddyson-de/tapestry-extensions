@@ -32,6 +32,11 @@ define(["t5/core/ajax", "t5/core/console","jquery", "select2"],function(ajax, co
                     data: {values: jsonString}});
             });
         }
+        // workaround jquery 3.6 focus issue
+        // https://github.com/select2/select2/issues/5993
+        $(document).on('select2:open', () => {
+          document.querySelector('.select2-search__field').focus();
+        });
 
     };
 });
