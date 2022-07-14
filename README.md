@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  implementation "com.github.eddyson-de:tapestry-extensions:0.1.0"
+  implementation "com.github.eddyson-de:tapestry-extensions:0.3.0"
 }
 ```
 ### `Page.tml`
