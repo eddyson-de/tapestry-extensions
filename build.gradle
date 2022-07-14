@@ -2,7 +2,7 @@ plugins {
   id "java"
   id "groovy"
   id "maven-publish"
-  id "com.github.node-gradle.node" version "3.1.0"
+  id "com.github.node-gradle.node" version "3.4.0"
 }
 
 description = "Tapestry Extensions"
@@ -10,12 +10,15 @@ group = "de.eddyson"
 version = "0.2.1"
 
 def versions = [
-    slf4j: '1.7.32',
-    tapestry: '5.7.3',
+    slf4j: '1.7.36',
+    tapestry: '5.8.2',
     selenium: '3.141.59'
 ]
 
-sourceCompatibility = "11"
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
   mavenCentral()
@@ -27,7 +30,7 @@ dependencies {
 
   implementation "org.slf4j:slf4j-api:$versions.slf4j"
 
-  runtimeOnly "com.github.eddyson-de:tapestry-webjars:1.1.2"
+  runtimeOnly "com.github.eddyson-de:tapestry-webjars:1.2.0"
 
   //Webjars
   runtimeOnly('org.webjars.npm:select2:4.0.13') {
@@ -36,17 +39,21 @@ dependencies {
   }
 
   testImplementation "org.apache.tapestry:tapestry-spock:$versions.tapestry"
-  testImplementation "org.gebish:geb-spock:4.1"
-  testImplementation "com.github.eddyson-de:tapestry-geb:0.46.0"
+  testImplementation "org.gebish:geb-spock:5.1"
+  testImplementation "com.github.eddyson-de:tapestry-geb:0.47.0"
   testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
   testImplementation "org.seleniumhq.selenium:selenium-chrome-driver:$versions.selenium"
-  testImplementation "io.github.bonigarcia:webdrivermanager:4.4.3"
+  testImplementation "io.github.bonigarcia:webdrivermanager:5.2.1"
 
 
   // Logback
-  testRuntimeOnly 'ch.qos.logback:logback-classic:1.2.5'
+  testRuntimeOnly 'ch.qos.logback:logback-classic:1.2.11'
 
   testRuntimeOnly "org.apache.tapestry:tapestry-webresources:$versions.tapestry"
+}
+
+test {
+  useJUnitPlatform()
 }
 
 tasks.withType(Test) {
@@ -60,7 +67,7 @@ tasks.withType(Test) {
 
 node {
   download = true
-  version = "14.17.3"
+  version = "14.20.0"
 }
 
 def compiledCoffeeScriptDir = "${project.buildDir}/compiled-coffeescript"
@@ -79,8 +86,11 @@ task compileCoffeeScript(type: NpxTask) {
   }
 }
 
-jar {
+processResources {
   dependsOn compileCoffeeScript
+}
+
+jar {
   manifest { attributes 'Tapestry-Module-Classes': 'de.eddyson.tapestry.extensions.modules.ExtensionsModule' }
   rootSpec.exclude 'META-INF/modules/**/*.coffee'
   from(compiledCoffeeScriptDir){ into "META-INF/modules" }
