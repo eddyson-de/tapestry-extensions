@@ -1,6 +1,6 @@
 package de.eddyson.tapestry.extensions.mixins;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectContainer;
