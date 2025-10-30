@@ -38,7 +38,7 @@ dependencies {
     exclude group: 'org.webjars.npm', module: 'jquery-mousewheel'
   }
 
-  testImplementation "org.apache.tapestry:tapestry-spock:$versions.tapestry"
+  testImplementation "org.apache.tapestry:tapestry-spock-jakarta:$versions.tapestry"
   testImplementation "org.gebish:geb-spock:6.0"
   testImplementation "com.github.eddyson-de:tapestry-geb:v0.51.0"
   testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:$versions.selenium"
